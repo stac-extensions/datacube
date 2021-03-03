@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+- Data Cube Extension: Units for STAC dimensions in should now be compliant to UDUNITS-2 units (singular) whenever available.
 
 ### Deprecated
 
