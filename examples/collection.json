@@ -1,23 +1,21 @@
 {
   "stac_version": "1.0.0-rc.1",
-  "stac_extensions": [
-    "collection-assets",
-    "item-assets",
-    "https://stac-extensions.github.io/template/v1.0.0/schema.json"
-  ],
   "type": "Collection",
-  "id": "collection",
-  "title": "A title",
-  "description": "A description",
-  "license": "Apache-2.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/datacube/v1.0.0/schema.json"
+  ],
+  "id": "Sentinel2-L1C",
+  "title": "Sentinel-2: MultiSpectral Instrument, Level-1C",
+  "description": "Multi-dimensional Sentinel-2 data cube in a STAC collection.",
+  "license": "proprietary",
   "extent": {
     "spatial": {
       "bbox": [
         [
-          172.9,
-          1.3,
-          173,
-          1.4
+          -180,
+          -56,
+          180,
+          83
         ]
       ]
     },
@@ -25,47 +23,156 @@
       "interval": [
         [
           "2015-06-23T00:00:00Z",
-          null
+          "2019-07-10T13:44:56Z"
         ]
       ]
     }
   },
-  "template:new_field": "test",
-  "template:xyz": {
-    "x": 1,
-    "y": 2,
-    "z": 3
-  },
-  "template:another_one": [
-    1,
-    2,
-    3
-  ],
-  "assets": {
-    "example": {
-      "href": "https://example.com/examples/file.xyz",
-      "template:new_field": "test"
-    }
-  },
-  "item_assets": {
-    "data": {
-      "template:new_field": "test"
+  "cube:dimensions": {
+    "x": {
+      "type": "spatial",
+      "axis": "x",
+      "extent": [
+        -180,
+        180
+      ],
+      "reference_system": 3857
+    },
+    "y": {
+      "type": "spatial",
+      "axis": "y",
+      "extent": [
+        -56,
+        83
+      ],
+      "reference_system": 3857
+    },
+    "time": {
+      "type": "temporal",
+      "extent": [
+        "2015-06-23T00:00:00Z",
+        "2019-07-10T13:44:56Z"
+      ],
+      "step": "P5D"
+    },
+    "spectral": {
+      "type": "bands",
+      "values": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B8A",
+        "B9",
+        "B10",
+        "B11",
+        "B12",
+        "QA10",
+        "QA20",
+        "QA60"
+      ]
     }
   },
   "summaries": {
     "datetime": {
       "minimum": "2015-06-23T00:00:00Z",
       "maximum": "2019-07-10T13:44:56Z"
-    }
+    },
+    "gsd": [
+      10,
+      30,
+      60
+    ],
+    "eo:platform": [
+      "sentinel-2a",
+      "sentinel-2b"
+    ],
+    "eo:constellation": [
+      "sentinel-2"
+    ],
+    "eo:instrument": [
+      "msi"
+    ],
+    "proj:epsg": [
+      3857
+    ],
+    "eo:bands": [
+      [
+        {
+          "name": "B1",
+          "common_name": "coastal",
+          "center_wavelength": 4.439
+        },
+        {
+          "name": "B2",
+          "common_name": "blue",
+          "center_wavelength": 4.966
+        },
+        {
+          "name": "B3",
+          "common_name": "green",
+          "center_wavelength": 5.6
+        },
+        {
+          "name": "B4",
+          "common_name": "red",
+          "center_wavelength": 6.645
+        },
+        {
+          "name": "B5",
+          "center_wavelength": 7.039
+        },
+        {
+          "name": "B6",
+          "center_wavelength": 7.402
+        },
+        {
+          "name": "B7",
+          "center_wavelength": 7.825
+        },
+        {
+          "name": "B8",
+          "common_name": "nir",
+          "center_wavelength": 8.351
+        },
+        {
+          "name": "B8A",
+          "center_wavelength": 8.648
+        },
+        {
+          "name": "B9",
+          "center_wavelength": 9.45
+        },
+        {
+          "name": "B10",
+          "center_wavelength": 1.3735
+        },
+        {
+          "name": "B11",
+          "common_name": "swir16",
+          "center_wavelength": 1.6137
+        },
+        {
+          "name": "B12",
+          "common_name": "swir22",
+          "center_wavelength": 2.2024
+        }
+      ]
+    ]
   },
   "links": [
     {
-      "href": "https://example.com/examples/collection.json",
-      "rel": "self"
+      "rel": "self",
+      "href": "https://example.sentinel2-hub.com/stac/example-collection.json"
     },
     {
-      "href": "https://example.com/examples/item.json",
-      "rel": "item"
+      "rel": "license",
+      "href": "https://scihub.copernicus.eu/twiki/pub/SciHubWebPortal/TermsConditions/Sentinel_Data_Terms_and_Conditions.pdf",
+      "title": "Legal notice on the use of Copernicus Sentinel Data and Service Information"
     }
   ]
 }
