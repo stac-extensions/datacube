@@ -17,7 +17,8 @@ Data cube related metadata, especially to describe their dimensions.
 
 ## Item Properties and Collection Fields
 
-These fields may be added to either [Item](../../item-spec/item-spec.md) Properties or [Collection](../../collection-spec/collection-spec.md).
+These fields may be added to either [Item](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md) 
+Properties or [Collection](https://github.com/radiantearth/stac-spec/tree/master/collection-spec/collection-spec.md).
 
 | Field Name      | Type                                               | Description                                 |
 | --------------- | -------------------------------------------------- | ------------------------------------------- |
@@ -25,7 +26,12 @@ These fields may be added to either [Item](../../item-spec/item-spec.md) Propert
 
 ### Dimension Object
 
-A *Dimension Object* comes in different flavors, each of them is defined below. The fields define mostly very similar fields, but they differ slightly depending on their use case. All objects share the fields `type` and `description` with the same definition, but `type` may be restricted to certain values. The definition of`axis` is shared between the spatial dimensions, but restricted to certain values, too. `extent`, `values` and `step` share the same definition, but differ in the supported data types (number or string) depending on the type of dimension. Whenever it's useful to specify these fields, the objects add the additional fields `reference_system` and `unit` with very similar definitions across the objects.
+A *Dimension Object* comes in different flavors, each of them is defined below. The fields define mostly very similar fields, 
+but they differ slightly depending on their use case. All objects share the fields `type` and `description` with the same definition, 
+but `type` may be restricted to certain values. The definition of`axis` is shared between the spatial dimensions, but restricted to 
+certain values, too. `extent`, `values` and `step` share the same definition, but differ in the supported data types (number or string) 
+depending on the type of dimension. Whenever it's useful to specify these fields, the objects add the additional fields `reference_system` 
+and `unit` with very similar definitions across the objects.
 
 ### Horizontal Spatial Dimension Object
 
@@ -60,7 +66,8 @@ An Vertical Spatial Dimension Object MUST specify an `extent` or a set of `value
 
 ### Temporal Dimension Object
 
-A temporal dimension based on the ISO 8601 standard. The temporal reference system for the data is expected to be ISO 8601 compliant (Gregorian calendar / UTC). Data not compliant with ISO 8601 can be represented as an *Additional Dimension Object* with `type` set to `temporal`.
+A temporal dimension based on the ISO 8601 standard. The temporal reference system for the data is expected to be ISO 8601 compliant 
+(Gregorian calendar / UTC). Data not compliant with ISO 8601 can be represented as an *Additional Dimension Object* with `type` set to `temporal`.
 
 | Field Name | Type            | Description                                                  |
 | ---------- | --------------- | ------------------------------------------------------------ |
