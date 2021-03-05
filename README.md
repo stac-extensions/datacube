@@ -1,4 +1,4 @@
-# Template Extension Specification
+# Datacube Extension Specification
 
 - **Title:** Datacube
 - **Identifier:** <https://stac-extensions.github.io/datacube/v1.0.0/schema.json>
