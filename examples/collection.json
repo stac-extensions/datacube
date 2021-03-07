@@ -1,9 +1,9 @@
 {
   "stac_version": "1.0.0-rc.1",
-  "type": "Collection",
   "stac_extensions": [
     "https://stac-extensions.github.io/datacube/v1.0.0/schema.json"
   ],
+  "type": "Collection",
   "id": "Sentinel2-L1C",
   "title": "Sentinel-2: MultiSpectral Instrument, Level-1C",
   "description": "Multi-dimensional Sentinel-2 data cube in a STAC collection.",

@@ -6,8 +6,10 @@
 - **Scope:** Item, Collection
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
 - **Owner**: @m-mohr
+- **History**: [Prior to March 2, 2021](https://github.com/radiantearth/stac-spec/commits/v1.0.0-rc.1/extensions/datacube)
 
-Data cube related metadata, especially to describe their dimensions.
+This document explains the Datacube Extension to the [SpatioTemporal Asset Catalog](https://github.com/radiantearth/stac-spec) (STAC) specification.
+It specifies datacube related metadata, especially their dimensions and potentially more in the future.
 
 - Examples:
   - [Item example](examples/item.json): Shows the basic usage of the extension in a STAC Item
@@ -18,11 +20,11 @@ Data cube related metadata, especially to describe their dimensions.
 ## Item Properties and Collection Fields
 
 These fields may be added to either [Item](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md) 
-Properties or [Collection](https://github.com/radiantearth/stac-spec/tree/master/collection-spec/collection-spec.md).
+Properties or a [Collection](https://github.com/radiantearth/stac-spec/tree/master/collection-spec/collection-spec.md).
 
 | Field Name      | Type                                               | Description                                 |
 | --------------- | -------------------------------------------------- | ------------------------------------------- |
-| cube:dimensions | Map<string, [Dimension Object](#dimension-object)> | **REQUIRED.** Uniquely named dimensions of the data cube. |
+| cube:dimensions | Map<string, [Dimension Object](#dimension-object)> | **REQUIRED.** Uniquely named dimensions of the datacube. |
 
 ### Dimension Object
 
