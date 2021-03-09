@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-- Units for STAC dimensions should now be compliant to UDUNITS-2 units (singular) whenever available.
 
 ### Deprecated
 
@@ -17,4 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [v1.0.0] - 2021-03-08
+
+Initial independent release, see [previous history](https://github.com/radiantearth/stac-spec/commits/v1.0.0-rc.1/extensions/datacube)
+
+### Changed
+- Units for STAC dimensions should now be compliant to UDUNITS-2 units (singular) whenever available.
+
+
 [Unreleased]: <https://github.com/stac-extensions/datacube/compare/v1.0.0...HEAD>
+[v1.0.0]: <https://github.com/stac-extensions/datacube/tree/v1.0.0>
