@@ -14,7 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- PROJ definitions have been removed as they have been deprecated by PROJ.
+
 ### Fixed
+
+- Clarified that EPSG codes must be numbers, PROJJSON must be objects and WKT2 must be a string.
 
 ## [v1.0.0] - 2021-03-08
 
