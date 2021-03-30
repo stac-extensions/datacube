@@ -23,6 +23,5 @@ Initial independent release, see [previous history](https://github.com/radiantea
 ### Changed
 - Units for STAC dimensions should now be compliant to UDUNITS-2 units (singular) whenever available.
 
-
 [Unreleased]: <https://github.com/stac-extensions/datacube/compare/v1.0.0...HEAD>
 [v1.0.0]: <https://github.com/stac-extensions/datacube/tree/v1.0.0>

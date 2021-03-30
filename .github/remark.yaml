@@ -21,7 +21,6 @@ plugins:
     - 'fenced'
 # Headings
   - remark-lint-heading-increment
-  - remark-lint-no-duplicate-headings
   - remark-lint-no-multiple-toplevel-headings
   - remark-lint-no-heading-punctuation
   - - remark-lint-maximum-heading-length
