@@ -24,6 +24,7 @@ Properties or a [Collection](https://github.com/radiantearth/stac-spec/tree/mast
 | Field Name      | Type                                               | Description                                 |
 | --------------- | -------------------------------------------------- | ------------------------------------------- |
 | cube:dimensions | Map<string, [Dimension Object](#dimension-object)> | **REQUIRED.** Uniquely named dimensions of the datacube. |
+| cube:variables  | Map<string, [Variable Object](#variable-object)>   | Data variables contained within the datacube. |
 
 ### Dimension Object
 
@@ -34,7 +35,7 @@ certain values, too. `extent`, `values` and `step` share the same definition, bu
 depending on the type of dimension. Whenever it's useful to specify these fields, the objects add the additional fields `reference_system` 
 and `unit` with very similar definitions across the objects.
 
-### Horizontal Spatial Dimension Object
+#### Horizontal Spatial Dimension Object
 
 A spatial dimension in one of the horizontal (x or y) directions.
 
@@ -48,7 +49,7 @@ A spatial dimension in one of the horizontal (x or y) directions.
 | step             | number\|null   | The space between the values. Use `null` for irregularly spaced steps. |
 | reference_system | string\|number\|object | The spatial reference system for the data, specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
-### Vertical Spatial Dimension Object
+#### Vertical Spatial Dimension Object
 
 A spatial dimension in vertical (z) direction.
 
@@ -65,7 +66,7 @@ A spatial dimension in vertical (z) direction.
 
 An Vertical Spatial Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both. 
 
-### Temporal Dimension Object
+#### Temporal Dimension Object
 
 A temporal dimension based on the ISO 8601 standard. The temporal reference system for the data is expected to be ISO 8601 compliant 
 (Gregorian calendar / UTC). Data not compliant with ISO 8601 can be represented as an *Additional Dimension Object* with `type` set to `temporal`.
@@ -78,7 +79,7 @@ A temporal dimension based on the ISO 8601 standard. The temporal reference syst
 | values     | \[string]       | If the dimension consists of set of specific values they can be listed here. The dates and/or times must be strings compliant to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). |
 | step       | string\|null    | The space between the temporal instances as [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations), e.g. `P1D`. Use `null` for irregularly spaced steps. |
 
-### Additional Dimension Object
+#### Additional Dimension Object
 
 An additional dimension that is not `spatial`, but may be `temporal` if the data is not compliant with ISO 8601.
 
@@ -93,6 +94,19 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 | reference_system | string            | The reference system for the data.                           |
 
 An Additional Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both.
+
+### Variable Object
+
+A *Variable Object* defines a multi-dimensional array. The array has dimensions, which are described by [Dimension Objects](#dimension-objet).
+
+| Field Name       | Type    | Description |
+| ---------------- | ------- | ----------- |
+| dimensions       | [ string ] | **REQUIRED.** The dimensions of the variable. This should refer to keys in the ``cube:dimensions`` object or be an empty list if the variable has no dimensions. |
+| description      | string  | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| extent           | \[number\|null]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-dimensional array. Use `null` for open intervals. |
+| values           | \[number\|string] | A set of all potential values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
+| step             | number\|null      | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
+| unit             | string            | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
 
 ## Contributing
 
