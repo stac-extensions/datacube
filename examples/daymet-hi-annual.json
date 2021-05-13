@@ -1,180 +1,181 @@
 {
-    "type": "Collection",
-    "stac_version": "1.0.0-rc.3",
-    "stac_extensions": [
-        "https://stac-extensions.github.io/datacube/v1.0.0/schema.json"
-    ],
-    "id": "daymet-hi-annual",
-    "title": "Daymet Hawaii Annual",
-    "description": "Daymet is a data product derived from a collection of algorithms and computer software designed to interpolate and extrapolate from daily meteorological observations to produce gridded estimates of daily weather parameters. Weather parameters generated include daily surfaces of minimum and maximum temperature, precipitation, vapor pressure, radiation, snow water equivalent, and day length produced on a 1 km x 1 km gridded surface. The motivation for producing Daymet is to provide measurements of near-surface meteorological conditions where no instrumentation exists. Having estimates of these surfaces is critical to understanding many processes in the terrestrial biogeochemical system.",
-    "license": "proprietary",
-    "extent": {
-        "spatial": {
-            "bbox": [
-                [
-                    -160.3056,
-                    17.9539,
-                    -154.772,
-                    23.5186
-                ]
-            ]
-        },
-        "temporal": {
-            "interval": [
-                [
-                    "1980-01-01T12:00:00Z",
-                    "2019-12-31T12:00:00Z"
-                ]
-            ]
-        }
+  "type": "Collection",
+  "stac_version": "1.0.0-rc.3",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/datacube/v1.0.0/schema.json"
+  ],
+  "id": "daymet-hi-annual",
+  "title": "Daymet Hawaii Annual",
+  "description": "Daymet is a data product derived from a collection of algorithms and computer software designed to interpolate and extrapolate from daily meteorological observations to produce gridded estimates of daily weather parameters. Weather parameters generated include daily surfaces of minimum and maximum temperature, precipitation, vapor pressure, radiation, snow water equivalent, and day length produced on a 1 km x 1 km gridded surface. The motivation for producing Daymet is to provide measurements of near-surface meteorological conditions where no instrumentation exists. Having estimates of these surfaces is critical to understanding many processes in the terrestrial biogeochemical system.",
+  "license": "proprietary",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -160.3056,
+          17.9539,
+          -154.772,
+          23.5186
+        ]
+      ]
     },
-    "links": [],
-    "assets": {
-        "data": {
-            "href": "abfs://daymet-zarr/annual/hi.zarr",
-            "title": "Annual Hawaii Daymet zarr root",
-            "description": "The root of the anuual Hawaii Daymet Zarr Group on Azure Blob Storage.",
-            "roles": [
-                "data", "zarr-root"
-            ]
-        }
+    "temporal": {
+      "interval": [
+        [
+          "1980-01-01T12:00:00Z",
+          "2019-12-31T12:00:00Z"
+        ]
+      ]
+    }
+  },
+  "links": [],
+  "assets": {
+    "data": {
+      "href": "abfs://daymet-zarr/annual/hi.zarr",
+      "title": "Annual Hawaii Daymet zarr root",
+      "description": "The root of the anuual Hawaii Daymet Zarr Group on Azure Blob Storage.",
+      "roles": [
+        "data",
+        "zarr-root"
+      ]
+    }
+  },
+  "cube:dimensions": {
+    "time": {
+      "type": "temporal",
+      "extent": [
+        "1980:00:00T00:00:00Z",
+        "2020:00:00T00:00:00Z"
+      ],
+      "description": "Annual",
+      "step": "P1Y"
     },
-    "cube:dimensions": {
-        "time": {
-            "type": "temporal",
-            "extent": [
-                "1980:00:00T00:00:00Z",
-                "2020:00:00T00:00:00Z"
-            ],
-            "description": "Annual",
-            "step": "P1Y"
-        },
-        "x": {
-            "type": "spatial",
-            "axis": "x",
-            "description": "North American Lambert Conformal Conic, 1KM grid.",
-            "extent": [
-                -622000,
-                -5519250
-            ],
-            "step": 1000,
-            "reference_system": "PROJCRS[\"undefined\",BASEGEOGCRS[\"undefined\",DATUM[\"undefined\",ELLIPSOID[\"undefined\",6378137,298.257223563,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8901]]],CONVERSION[\"unknown\",METHOD[\"Lambert Conic Conformal (2SP)\",ID[\"EPSG\",9802]],PARAMETER[\"Latitude of 1st standard parallel\",25,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Latitude of 2nd standard parallel\",60,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8824]],PARAMETER[\"Latitude of false origin\",42.5,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8821]],PARAMETER[\"Longitude of false origin\",-100,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8822]],PARAMETER[\"Easting at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8826]],PARAMETER[\"Northing at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8827]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]"
-        },
-        "y": {
-            "type": "spatial",
-            "axis": "y",
-            "description": "North American Lambert Conformal Conic, 1KM grid.",
-            "extent": [
-                -5802250,
-                -39000
-            ],
-            "step": 1000,
-            "reference_system": "PROJCRS[\"undefined\",BASEGEOGCRS[\"undefined\",DATUM[\"undefined\",ELLIPSOID[\"undefined\",6378137,298.257223563,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8901]]],CONVERSION[\"unknown\",METHOD[\"Lambert Conic Conformal (2SP)\",ID[\"EPSG\",9802]],PARAMETER[\"Latitude of 1st standard parallel\",25,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Latitude of 2nd standard parallel\",60,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8824]],PARAMETER[\"Latitude of false origin\",42.5,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8821]],PARAMETER[\"Longitude of false origin\",-100,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8822]],PARAMETER[\"Easting at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8826]],PARAMETER[\"Northing at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8827]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]"
-        },
-        "nv": {
-            "type": "count",
-            "description": "size of time_bnds",
-            "values": [
-                0,
-                1
-            ]
-        },
-        "lat": {
-            "type": "latitude",
-            "extent": [
-                17.960035,
-                23.512327
-            ],
-            "description": "latitude coordinate",
-            "unit": "degrees_north",
-            "dimensions": [
-                "y",
-                "x"
-            ]
-        },
-        "lon": {
-            "type": "latitude",
-            "extent": [
-                -160.29884,
-                -154.77806
-            ],
-            "description": "longitude coordinate",
-            "unit": "degrees_east",
-            "dimensions": [
-                "y",
-                "x"
-            ]
-        }
+    "x": {
+      "type": "spatial",
+      "axis": "x",
+      "description": "North American Lambert Conformal Conic, 1KM grid.",
+      "extent": [
+        -622000,
+        -5519250
+      ],
+      "step": 1000,
+      "reference_system": "PROJCRS[\"undefined\",BASEGEOGCRS[\"undefined\",DATUM[\"undefined\",ELLIPSOID[\"undefined\",6378137,298.257223563,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8901]]],CONVERSION[\"unknown\",METHOD[\"Lambert Conic Conformal (2SP)\",ID[\"EPSG\",9802]],PARAMETER[\"Latitude of 1st standard parallel\",25,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Latitude of 2nd standard parallel\",60,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8824]],PARAMETER[\"Latitude of false origin\",42.5,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8821]],PARAMETER[\"Longitude of false origin\",-100,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8822]],PARAMETER[\"Easting at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8826]],PARAMETER[\"Northing at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8827]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]"
     },
-    "cube:variables": {
-        "prcp": {
-            "description": "The total accumulated precipitation over the monthly period of the daily total precipitation. Sum of all forms of precipitation converted to a water-equivalent depth.",
-            "extent": [
-                0,
-                null
-            ],
-            "unit": "mm",
-            "dimensions": [
-                "time",
-                "y",
-                "x"
-            ]
-        },
-        "swe": {
-            "description": "The average of the daily snow water equivalent (the amount of water contained within the snowpack) in kilograms per square meter over the monthly period.",
-            "extent": [
-                0,
-                null
-            ],
-            "unit": "kg/m2",
-            "dimensions": [
-                "time",
-                "y",
-                "x"
-            ]
-        },
-        "tmin": {
-            "description": "The average minimum temperature for a daily period over the entire monthly period.",
-            "extent": null,
-            "unit": "degrees C",
-            "dimensions": [
-                "time",
-                "y",
-                "x"
-            ]
-        },
-        "tmax": {
-            "description": "The average maximum temperature for a daily period over the entire monthly period.",
-            "extent": null,
-            "unit": "degrees C",
-            "dimensions": [
-                "time",
-                "y",
-                "x"
-            ]
-        },
-        "vp": {
-            "description": "The average of the daily average partial pressure of water vapor over the monthly period.",
-            "extent": null,
-            "unit": "Pa",
-            "dimensions": [
-                "time",
-                "y",
-                "x"
-            ]
-        },
-        "time_bnds": {
-            "type": "datetime",
-            "description": "",
-            "dimensions": [
-                "time",
-                "nv"
-            ]
-        },
-        "lambert_conformal_conic": {
-            "type": "projection?",
-            "description": "...",
-            "values": [
+    "y": {
+      "type": "spatial",
+      "axis": "y",
+      "description": "North American Lambert Conformal Conic, 1KM grid.",
+      "extent": [
+        -5802250,
+        -39000
+      ],
+      "step": 1000,
+      "reference_system": "PROJCRS[\"undefined\",BASEGEOGCRS[\"undefined\",DATUM[\"undefined\",ELLIPSOID[\"undefined\",6378137,298.257223563,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8901]]],CONVERSION[\"unknown\",METHOD[\"Lambert Conic Conformal (2SP)\",ID[\"EPSG\",9802]],PARAMETER[\"Latitude of 1st standard parallel\",25,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Latitude of 2nd standard parallel\",60,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8824]],PARAMETER[\"Latitude of false origin\",42.5,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8821]],PARAMETER[\"Longitude of false origin\",-100,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8822]],PARAMETER[\"Easting at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8826]],PARAMETER[\"Northing at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8827]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]"
+    },
+    "nv": {
+      "type": "count",
+      "description": "size of time_bnds",
+      "values": [
+        0,
+        1
+      ]
+    },
+    "lat": {
+      "type": "latitude",
+      "extent": [
+        17.960035,
+        23.512327
+      ],
+      "description": "latitude coordinate",
+      "unit": "degrees_north",
+      "dimensions": [
+        "y",
+        "x"
+      ]
+    },
+    "lon": {
+      "type": "latitude",
+      "extent": [
+        -160.29884,
+        -154.77806
+      ],
+      "description": "longitude coordinate",
+      "unit": "degrees_east",
+      "dimensions": [
+        "y",
+        "x"
+      ]
+    }
+  },
+  "cube:variables": {
+    "prcp": {
+      "description": "The total accumulated precipitation over the monthly period of the daily total precipitation. Sum of all forms of precipitation converted to a water-equivalent depth.",
+      "extent": [
+        0,
+        null
+      ],
+      "unit": "mm",
+      "dimensions": [
+        "time",
+        "y",
+        "x"
+      ]
+    },
+    "swe": {
+      "description": "The average of the daily snow water equivalent (the amount of water contained within the snowpack) in kilograms per square meter over the monthly period.",
+      "extent": [
+        0,
+        null
+      ],
+      "unit": "kg/m2",
+      "dimensions": [
+        "time",
+        "y",
+        "x"
+      ]
+    },
+    "tmin": {
+      "description": "The average minimum temperature for a daily period over the entire monthly period.",
+      "extent": null,
+      "unit": "degrees C",
+      "dimensions": [
+        "time",
+        "y",
+        "x"
+      ]
+    },
+    "tmax": {
+      "description": "The average maximum temperature for a daily period over the entire monthly period.",
+      "extent": null,
+      "unit": "degrees C",
+      "dimensions": [
+        "time",
+        "y",
+        "x"
+      ]
+    },
+    "vp": {
+      "description": "The average of the daily average partial pressure of water vapor over the monthly period.",
+      "extent": null,
+      "unit": "Pa",
+      "dimensions": [
+        "time",
+        "y",
+        "x"
+      ]
+    },
+    "time_bnds": {
+      "type": "datetime",
+      "description": "",
+      "dimensions": [
+        "time",
+        "nv"
+      ]
+    },
+    "lambert_conformal_conic": {
+      "type": "projection?",
+      "description": "...",
+      "values": [
         -32767
       ],
       "dimensions": []
