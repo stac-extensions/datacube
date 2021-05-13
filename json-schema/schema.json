@@ -22,8 +22,8 @@
               "allOf": [
                 {
                   "required": [
-                    // "cube:dimensions"
-                  
+                    "cube:dimensions"
+                  ]
                 },
                 {
                   "$ref": "#/definitions/datacube"
