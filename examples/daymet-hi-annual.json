@@ -172,7 +172,7 @@
     "lambert_conformal_conic": {
       "type": "projection",
       "description": "Lambert Conformal Conic.",
-      "values_numeric": [
+      "values": [
         -32767
       ],
       "dimensions": []
