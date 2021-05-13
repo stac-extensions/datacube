@@ -92,12 +92,13 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 | step             | number\|null      | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string            | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
 | reference_system | string            | The reference system for the data.                           |
+| dimensions       | [ string ]        | The dimensions of this dimension, for multidimensional coordinates. The values should be other keys in the ``cube:dimensions`` object, or be an empty list if this dimension does not have dimensions. See [multidimensional cooredinates](#multidimensional-coordinates)
 
 An Additional Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both.
 
 ### Variable Object
 
-A *Variable Object* defines a multi-dimensional array. The array has dimensions, which are described by [Dimension Objects](#dimension-objet).
+A *Variable Object* defines a variable (or a multi-dimensional array). The variable may have dimensions, which are described by [Dimension Objects](#dimension-objet).
 
 | Field Name       | Type    | Description |
 | ---------------- | ------- | ----------- |
@@ -107,6 +108,30 @@ A *Variable Object* defines a multi-dimensional array. The array has dimensions,
 | values           | \[number\|string] | A set of all potential values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
 | step             | number\|null      | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string            | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
+
+
+### Multidimensional Coordinates
+
+The actual values of a dimension (a specific datetime or specific latitude, for example) can be referred to as "coordinates". Some dimensions might themselves be *multi-dimensional*, when the coordinates of that dimension depend on the values of one or more other dimensions. For example, a datacube might be defined in some geographic projection. The data provider might include a ``lat`` dimension, whose values depend on the ``(y, x)`` grid.
+
+```
+{
+  "cube:dimensions": {
+    "x": {
+      ...
+    },
+    "y": {
+      ...
+    },
+    "lat": {
+      "type": "additional",
+      "description": "Latitude coordinate at a (y, x) point on the grid.",
+      "unit": "degrees_north",
+      "dimensions": ["y", "x"]
+    }
+  }
+}
+```
 
 ## Contributing
 
