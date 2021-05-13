@@ -28,10 +28,7 @@
                 {
                   "$ref": "#/definitions/datacube"
                 }
-              ],
-              "cube:variables": {
-                "$ref": "#/definitions/variable"
-              }
+              ]
             },
             "assets": {
               "type": "object",
@@ -58,9 +55,6 @@
           "properties": {
             "type": {
               "const": "Collection"
-            },
-            "cube:variables": {
-              "$ref": "#/definitions/variable"
             },
             "assets": {
               "type": "object",
@@ -122,7 +116,7 @@
             ]
           }
         },
-        "cube:variables": {
+       "cube:variables": {
           "type": "object",
           "additionalProperties": {
             "anyOf": [
@@ -329,6 +323,9 @@
         "dimensions"
       ],
       "properties": {
+        "type": {
+          "$ref": "#/definitions/variable_type"
+        },
         "description": {
           "$ref": "#/definitions/description"
         },
@@ -379,6 +376,13 @@
     "axis_z": {
       "type": "string",
       "const": "z"
+    },
+    "variable_type": {
+      "type": "string",
+      "enum": [
+        "data",
+        "auxiliary"
+      ]
     },
     "extent_closed": {
       "type": "array",

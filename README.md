@@ -21,10 +21,10 @@ It specifies datacube related metadata, especially their dimensions and potentia
 These fields may be added to either [Item](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md) 
 Properties or a [Collection](https://github.com/radiantearth/stac-spec/tree/master/collection-spec/collection-spec.md).
 
-| Field Name      | Type                                               | Description                                 |
-| --------------- | -------------------------------------------------- | ------------------------------------------- |
-| cube:dimensions | Map<string, [Dimension Object](#dimension-object)> | **REQUIRED.** Uniquely named dimensions of the datacube. |
-| cube:variables  | Map<string, [Variable Object](#variable-object)>   | Data variables contained within the datacube. |
+| Field Name       | Type                                               | Description                                 |
+| ---------------- | -------------------------------------------------- | ------------------------------------------- |
+| cube:dimensions  | Map<string, [Dimension Object](#dimension-object)> | **REQUIRED.** Uniquely named dimensions of the datacube. |
+| cube:variables   | Map<string, [Variable Object](#variable-object)>   | Data variables contained within the datacube. |
 
 ### Dimension Object
 
@@ -35,7 +35,7 @@ certain values, too. `extent`, `values` and `step` share the same definition, bu
 depending on the type of dimension. Whenever it's useful to specify these fields, the objects add the additional fields `reference_system` 
 and `unit` with very similar definitions across the objects.
 
-#### Horizontal Spatial Dimension Object
+### Horizontal Spatial Dimension Object
 
 A spatial dimension in one of the horizontal (x or y) directions.
 
@@ -49,7 +49,7 @@ A spatial dimension in one of the horizontal (x or y) directions.
 | step             | number\|null   | The space between the values. Use `null` for irregularly spaced steps. |
 | reference_system | string\|number\|object | The spatial reference system for the data, specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
-#### Vertical Spatial Dimension Object
+### Vertical Spatial Dimension Object
 
 A spatial dimension in vertical (z) direction.
 
@@ -66,7 +66,7 @@ A spatial dimension in vertical (z) direction.
 
 An Vertical Spatial Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both. 
 
-#### Temporal Dimension Object
+### Temporal Dimension Object
 
 A temporal dimension based on the ISO 8601 standard. The temporal reference system for the data is expected to be ISO 8601 compliant 
 (Gregorian calendar / UTC). Data not compliant with ISO 8601 can be represented as an *Additional Dimension Object* with `type` set to `temporal`.
@@ -79,7 +79,7 @@ A temporal dimension based on the ISO 8601 standard. The temporal reference syst
 | values     | \[string]       | If the dimension consists of set of specific values they can be listed here. The dates and/or times must be strings compliant to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). |
 | step       | string\|null    | The space between the temporal instances as [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations), e.g. `P1D`. Use `null` for irregularly spaced steps. |
 
-#### Additional Dimension Object
+### Additional Dimension Object
 
 An additional dimension that is not `spatial`, but may be `temporal` if the data is not compliant with ISO 8601.
 
@@ -92,7 +92,6 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 | step             | number\|null      | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string            | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
 | reference_system | string            | The reference system for the data.                           |
-| dimensions       | \[string]        | The dimensions of this dimension, for multidimensional coordinates. The values should be other keys in the ``cube:dimensions`` object, or be an empty list if this dimension does not have dimensions. See [multidimensional coordinates](#multidimensional-coordinates) |
 
 An Additional Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both.
 
@@ -100,41 +99,34 @@ An Additional Dimension Object MUST specify an `extent` or a set of `values`. It
 
 A *Variable Object* defines a variable (or a multi-dimensional array). The variable may have dimensions, which are described by [Dimension Objects](#dimension-object).
 
-| Field Name       | Type    | Description |
-| ---------------- | ------- | ----------- |
-| dimensions       | \[string] | **REQUIRED.** The dimensions of the variable. This should refer to keys in the ``cube:dimensions`` object or be an empty list if the variable has no dimensions. |
-| description      | string  | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| extent           | \[number\|null]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-dimensional array. Use `null` for open intervals. |
-| values           | \[number\|string] | A set of all potential values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
-| step             | number\|null      | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
-| unit             | string            | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
+| Field Name       | Type                 | Description |
+| ---------------- | ------- -------------| ----------- |
+| dimensions       | \[string]            | **REQUIRED.** The dimensions of the variable. This should refer to keys in the ``cube:dimensions`` object or be an empty list if the variable has no dimensions. |
+| type             | string               | **REQUIRED.** Type of the variable, (`data`, `auxiliary`). |
+| description      | string               | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| extent           | \[number\|null]      | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-dimensional array. Use `null` for open intervals. |
+| values           | \[number\|string]    | A set of all potential values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
+| step             | number\|null         | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
+| unit             | string               | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
 
-### Multidimensional Coordinates
+**type**: The Variable `type` indicates whether what kind of variable is being described,
+using the terminology from the [CF Conventions](http://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#terminology).
+A `data` variable typically represents some physical quantity being measured.
 
-The actual values of a dimension (a specific datetime or specific latitude, for example) can be referred
-to as "coordinates". Some dimensions might themselves be *multi-dimensional*, when the coordinates of that
-dimension depend on the values of one or more other dimensions. For example, a datacube might be defined
-in some geographic projection. The data provider might include a ``lat`` dimension, whose values depend
-on the ``(y, x)`` grid.
+An `auxiliary` coordinate variable is defined as
 
-```json
-{
-  "cube:dimensions": {
-    "x": {
-      ...
-    },
-    "y": {
-      ...
-    },
-    "lat": {
-      "type": "additional",
-      "description": "Latitude coordinate at a (y, x) point on the grid.",
-      "unit": "degrees_north",
-      "dimensions": ["y", "x"]
-    }
-  }
-}
-```
+> Any netCDF variable that contains coordinate data, but is not a coordinate variable
+> (in the sense of that term defined by the NUG and used by this standard - see below).
+> Unlike coordinate variables, there is no relationship between the name of an
+> auxiliary coordinate variable and the name(s) of its dimension(s).
+
+For reference, a `coordinate` variable is defined as
+
+> a one-dimensional variable with the same name as its dimension `[e.g., time(time) ]`, and
+> it is defined as a numeric data type with values that are ordered monotonically.
+> Missing values are not allowed in coordinate variables.
+
+In the `datacube` STAC extension, coordinate variables should be provided by `cube:dimensions`.
 
 ## Contributing
 
