@@ -102,7 +102,7 @@ An Additional Dimension Object MUST specify an `extent` or a set of `values`. It
 A *Variable Object* defines a variable (or a multi-dimensional array). The variable may have dimensions, which are described by [Dimension Objects](#dimension-object).
 
 | Field Name       | Type                 | Description |
-| ---------------- | ------- -------------| ----------- |
+| ---------------- | ---------------------| ----------- |
 | dimensions       | \[string]            | **REQUIRED.** The dimensions of the variable. This should refer to keys in the ``cube:dimensions`` object or be an empty list if the variable has no dimensions. |
 | type             | string               | **REQUIRED.** Type of the variable, (`data`, `auxiliary`). |
 | description      | string               | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
