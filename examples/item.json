@@ -99,6 +99,26 @@
       }
     }
   },
+  "cube:variables": {
+    "temp": {
+      "dimensions": [
+        "time",
+        "y",
+        "x",
+        "pressure_levels"
+      ],
+      "type": "data"
+    },
+    "color": {
+      "dimensions": [],
+      "type": "auxiliary",
+      "values": [
+        "red",
+        "green",
+        "blue"
+      ]
+    }
+  },
   "assets": {
     "data": {
       "href": "http://cool-sat.com/catalog/datacube-123/data.nc",

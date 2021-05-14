@@ -24,7 +24,9 @@ Properties or a [Collection](https://github.com/radiantearth/stac-spec/tree/mast
 | Field Name       | Type                                               | Description                                 |
 | ---------------- | -------------------------------------------------- | ------------------------------------------- |
 | cube:dimensions  | Map<string, [Dimension Object](#dimension-object)> | **REQUIRED.** Uniquely named dimensions of the datacube. |
-| cube:variables   | Map<string, [Variable Object](#variable-object)>   | Data variables contained within the datacube. |
+| cube:variables   | Map<string, [Variable Object](#variable-object)>   | Uniquely named variables of the datacube. |
+
+The keys of `cube:dimensions` and `cube:variables` should be unique together; a key like `lat` should not be both a dimension and a variable.
 
 ### Dimension Object
 
