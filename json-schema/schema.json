@@ -119,11 +119,7 @@
        "cube:variables": {
           "type": "object",
           "additionalProperties": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/variable"
-              }
-            ]
+              "$ref": "#/definitions/variable"
           }
         }
       }
@@ -323,8 +319,12 @@
         "dimensions"
       ],
       "properties": {
-        "type": {
-          "$ref": "#/definitions/variable_type"
+        "variable_type": {
+          "type": "string",
+          "enum": [
+            "data",
+            "auxiliary"
+          ]
         },
         "description": {
           "$ref": "#/definitions/description"
@@ -376,13 +376,6 @@
     "axis_z": {
       "type": "string",
       "const": "z"
-    },
-    "variable_type": {
-      "type": "string",
-      "enum": [
-        "data",
-        "auxiliary"
-      ]
     },
     "extent_closed": {
       "type": "array",
