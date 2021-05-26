@@ -111,24 +111,14 @@ A *Variable Object* defines a variable (or a multi-dimensional array). The varia
 | step             | number\|null                 | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string                       | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
 
-**type**: The Variable `type` indicates whether what kind of variable is being described,
-using the terminology from the [CF Conventions](http://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#terminology).
-A `data` variable typically represents some physical quantity being measured.
+**type**: The Variable `type` indicates whether what kind of variable is being described. It has two allowed values:
 
-An `auxiliary` coordinate variable is defined as
+1. `data`: a variable indicating some measured value, for example "precipitation", "temperature", etc.
+2. `auxiliary`: a variable that contains coordinate data, but isn't isn't a dimension in `cube:dimensions`.
+  For example, the values of the datacube might provided in the projected coordinate reference system, but
+  the datacube could have a variable `lon` with dimensions `(y, x)`, giving the longitude at each point.
 
-> Any netCDF variable that contains coordinate data, but is not a coordinate variable
-> (in the sense of that term defined by the NUG and used by this standard - see below).
-> Unlike coordinate variables, there is no relationship between the name of an
-> auxiliary coordinate variable and the name(s) of its dimension(s).
-
-For reference, a `coordinate` variable is defined as
-
-> a one-dimensional variable with the same name as its dimension `[e.g., time(time) ]`, and
-> it is defined as a numeric data type with values that are ordered monotonically.
-> Missing values are not allowed in coordinate variables.
-
-In the `datacube` STAC extension, coordinate variables should be provided by `cube:dimensions`.
+See the [CF Conventions](http://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#terminology) for more on auxiliary coordinates.
 
 ## Contributing
 
