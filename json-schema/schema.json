@@ -353,7 +353,7 @@
         },
         "step": {
           "type": [
-            "string",
+            "number",
             "null"
           ]
         },
