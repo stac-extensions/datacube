@@ -351,12 +351,6 @@
             ]
           }
         },
-        "step": {
-          "type": [
-            "number",
-            "null"
-          ]
-        },
         "unit": {
           "$ref": "#/definitions/unit"
         }
