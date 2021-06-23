@@ -63,7 +63,7 @@ A spatial dimension in vertical (z) direction.
 | unit             | string           | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
 | reference_system | string\|number\|object | The spatial reference system for the data, specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
-An Vertical Spatial Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both. 
+A Vertical Spatial Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both. 
 
 ### Temporal Dimension Object
 
