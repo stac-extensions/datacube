@@ -80,7 +80,7 @@ A temporal dimension based on the ISO 8601 standard. The temporal reference syst
 
 ### Additional Dimension Object
 
-An additional dimension that is not `spatial`, but may be `temporal` if the data is not compliant with ISO 8601.
+An additional dimension that is not `spatial`, but may be `temporal` if the data is not compliant with ISO 8601 (see below).
 
 | Field Name       | Type              | Description                                                  |
 | ---------------- | ----------------- | ------------------------------------------------------------ |
@@ -93,6 +93,11 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 | reference_system | string            | The reference system for the data.                           |
 
 An Additional Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both.
+
+Note on "Additional Dimension" with type `temporal`:
+You can distinguish the "Temporal Dimension" from an "Additional Dimension" by checking whether the extent exists and contains strings.
+So if the `type` equals `temporal` and `extent` is an array of strings/null, then you have a "Temporal Dimension",
+otherwise you have an "Additional Dimension".
 
 ## Contributing
 
