@@ -115,6 +115,12 @@
               }
             ]
           }
+        },
+       "cube:variables": {
+          "type": "object",
+          "additionalProperties": {
+              "$ref": "#/definitions/variable"
+          }
         }
       }
     },
@@ -171,6 +177,14 @@
         },
         "reference_system": {
           "type": "string"
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string"
+            ]
+          }
         }
       }
     },
@@ -295,6 +309,50 @@
             "string",
             "null"
           ]
+        }
+      }
+    },
+    "variable": {
+      "title": "Variable Object",
+      "type": "object",
+      "required": [
+        "dimensions"
+      ],
+      "properties": {
+        "variable_type": {
+          "type": "string",
+          "enum": [
+            "data",
+            "auxiliary"
+          ]
+        },
+        "description": {
+          "$ref": "#/definitions/description"
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "values": {
+          "type": "array",
+          "minItems": 1
+        },
+        "extent": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          }
+        },
+        "unit": {
+          "$ref": "#/definitions/unit"
         }
       }
     },

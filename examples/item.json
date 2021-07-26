@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-rc.1",
+  "stac_version": "1.0.0",
   "stac_extensions": [
     "https://stac-extensions.github.io/datacube/v1.0.0/schema.json"
   ],
@@ -97,6 +97,26 @@
           "blue"
         ]
       }
+    }
+  },
+  "cube:variables": {
+    "temp": {
+      "dimensions": [
+        "time",
+        "y",
+        "x",
+        "pressure_levels"
+      ],
+      "type": "data"
+    },
+    "color": {
+      "dimensions": [],
+      "type": "auxiliary",
+      "values": [
+        "red",
+        "green",
+        "blue"
+      ]
     }
   },
   "assets": {
