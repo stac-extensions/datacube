@@ -6,14 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2.0.0] - 2021-07-26
+
 ### Added
+
+- `cube:variable`: Object for describing NetCDF-style multi-dimensional arrays in a datacube [#6](https://github.com/stac-extensions/datacube/pull/6)
 
 ### Changed
 
 - Updated examples to STAC 1.0.0
-- Added the `cube:variable` object for describing NetCDF-style multi-dimensional arrays in a datacube [#6](https://github.com/stac-extensions/datacube/pull/6)
-
-### Deprecated
 
 ### Removed
 
@@ -21,8 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Clarified that EPSG codes must be numbers, PROJJSON must be objects and WKT2 must be a string.
-- Clarified how to distinguish a Temporal Dimension from an Additional Dimension with type 'temporal'. [#5](https://github.com/stac-extensions/datacube/issues/5)
+- Clarified that EPSG codes must be integers, PROJJSON must be objects and WKT2 must be a string
+- Clarified how to distinguish a Temporal Dimension from an Additional Dimension with type 'temporal' [#5](https://github.com/stac-extensions/datacube/issues/5)
+- The JSON Schema is more strict and should not have issues with missing required fields in Collections any longer [#4](https://github.com/stac-extensions/datacube/issues/4)
 
 ## [v1.0.0] - 2021-03-08
 
@@ -31,5 +33,6 @@ Initial independent release, see [previous history](https://github.com/radiantea
 ### Changed
 - Units for STAC dimensions should now be compliant to UDUNITS-2 units (singular) whenever available.
 
-[Unreleased]: <https://github.com/stac-extensions/datacube/compare/v1.0.0...HEAD>
+[Unreleased]: <https://github.com/stac-extensions/datacube/compare/v2.0.0...HEAD>
+[v2.0.0]: <https://github.com/stac-extensions/datacube/compare/v1.0.0...v2.0.0>
 [v1.0.0]: <https://github.com/stac-extensions/datacube/tree/v1.0.0>
