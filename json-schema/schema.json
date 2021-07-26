@@ -8,6 +8,9 @@
       "$comment": "This is the schema for STAC Items.",
       "allOf": [
         {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
           "type": "object",
           "required": [
             "type",
@@ -21,60 +24,110 @@
             "properties": {
               "allOf": [
                 {
-                  "required": [
-                    "cube:dimensions"
-                  ]
+                  "$ref": "#/definitions/requirements"
                 },
                 {
-                  "$ref": "#/definitions/datacube"
+                  "$ref": "#/definitions/fields"
                 }
               ]
             },
             "assets": {
               "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/datacube"
+              "not": {
+                "additionalProperties": {
+                  "not": {
+                    "$ref": "#/definitions/fields"
+                  }
+                }
               }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$comment": "This is the schema for STAC Collections.",
+      "type": "object",
+      "allOf": [
+        {
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "const": "Collection"
             }
           }
         },
         {
           "$ref": "#/definitions/stac_extensions"
         }
-      ]
-    },
-    {
-      "$comment": "This is the schema for STAC Collections.",
-      "allOf": [
+      ],
+      "anyOf": [
         {
-          "type": "object",
+          "$comment": "This is the schema for the top-level fields in a Collection.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/requirements"
+            },
+            {
+              "$ref": "#/definitions/fields"
+            }
+          ]
+        },
+        {
+          "$comment": "This is the schema for the fields in Collection Assets.",
           "required": [
-            "type",
-            "cube:dimensions"
+            "assets"
           ],
           "properties": {
-            "type": {
-              "const": "Collection"
-            },
             "assets": {
               "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/datacube"
-              }
-            },
-            "item_assets": {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/datacube"
+              "not": {
+                "additionalProperties": {
+                  "not": {
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/requirements"
+                      },
+                      {
+                        "$ref": "#/definitions/fields"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
         },
         {
-          "$ref": "#/definitions/stac_extensions"
+          "$comment": "This is the schema for the fields in Item Asset Definitions.",
+          "required": [
+            "item_assets"
+          ],
+          "properties": {
+            "item_assets": {
+              "type": "object",
+              "not": {
+                "additionalProperties": {
+                  "not": {
+                    "$ref": "#/definitions/fields"
+                  }
+                }
+              }
+            }
+          }
         },
         {
-          "$ref": "#/definitions/datacube"
+          "$comment": "This is the schema for the fields in Summaries. by default, only checks the existance of the properties, but not the schema of the summaries.",
+          "required": [
+            "summaries"
+          ],
+          "properties": {
+            "summaries": {
+              "$ref": "#/definitions/summaryRequirements"
+            }
+          }
         }
       ]
     }
@@ -94,34 +147,53 @@
         }
       }
     },
-    "datacube": {
+    "fields": {
       "type": "object",
       "properties": {
         "cube:dimensions": {
-          "type": "object",
-          "additionalProperties": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/additional_dimension"
-              },
-              {
-                "$ref": "#/definitions/horizontal_spatial_dimension"
-              },
-              {
-                "$ref": "#/definitions/vertical_spatial_dimension"
-              },
-              {
-                "$ref": "#/definitions/temporal_dimension"
-              }
-            ]
-          }
+          "$ref": "#/definitions/cube:dimensions"
         },
-       "cube:variables": {
-          "type": "object",
-          "additionalProperties": {
-              "$ref": "#/definitions/variable"
-          }
+        "cube:variables": {
+          "$ref": "#/definitions/cube:variables"
         }
+      },
+      "patternProperties": {
+        "^(?!cube:)": {}
+      },
+      "additionalProperties": false
+    },
+    "requirements": {
+      "required": ["cube:dimensions"]
+    },
+    "summaryRequirements": {
+      "anyOf": [
+        {"required": ["cube:dimensions"]},
+        {"required": ["cube:variables"]}
+      ]
+    },
+    "cube:dimensions": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/additional_dimension"
+          },
+          {
+            "$ref": "#/definitions/horizontal_spatial_dimension"
+          },
+          {
+            "$ref": "#/definitions/vertical_spatial_dimension"
+          },
+          {
+            "$ref": "#/definitions/temporal_dimension"
+          }
+        ]
+      }
+    },
+    "cube:variables": {
+      "type": "object",
+      "additionalProperties": {
+          "$ref": "#/definitions/variable"
       }
     },
     "additional_dimension": {
