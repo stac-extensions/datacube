@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Added support for STAC 1.0
+- Updated examples to STAC 1.0.0
 - Added the `cube:variable` object for describing NetCDF-style multi-dimensional arrays in a datacube [#6](https://github.com/stac-extensions/datacube/pull/6)
 
 ### Deprecated
