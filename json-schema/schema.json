@@ -502,10 +502,19 @@
       "type": "string"
     },
     "reference_system_spatial": {
-      "type": [
-        "string",
-        "number",
-        "object"
+      "oneOf": [
+        {
+          "description": "WKT2",
+          "type": "string"
+        },
+        {
+          "description": "EPSG code",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "$ref": "https://proj.org/schemas/v0.4/projjson.schema.json"
+        }
       ],
       "default": 4326
     },
