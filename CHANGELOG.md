@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- A new Vector Cube Dimension
+
 ## [v2.0.0] - 2021-07-26
 
 ### Added
