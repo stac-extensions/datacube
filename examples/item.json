@@ -134,7 +134,7 @@
   "links": [
     {
       "rel": "self",
-      "href": "http://cool-sat.com/catalog/datacube-123/example-item.json"
+      "href": "http://cool-sat.com/catalog/datacube-123/item.json"
     }
   ]
 }
