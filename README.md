@@ -99,7 +99,7 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 
 | Field Name       | Type              | Description                                                  |
 | ---------------- | ----------------- | ------------------------------------------------------------ |
-| type             | string            | **REQUIRED.** Custom type of the dimension, never `spatial`. |
+| type             | string            | **REQUIRED.** Custom type of the dimension, never `spatial` or `vector`. |
 | description      | string            | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|null]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-element array. Use `null` for open intervals. |
 | values           | \[number\|string] | A set of all potential values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
