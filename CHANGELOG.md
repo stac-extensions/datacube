@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - A new Vector Cube Dimension
 
+### Changed
+
+- Clarified that `values` must be an ordered list and not a set of unordered values. [#11](https://github.com/stac-extensions/datacube/issues/11)
+
 ## [v2.0.0] - 2021-07-26
 
 ### Added

@@ -47,7 +47,7 @@ A spatial dimension in one of the horizontal (x or y) directions.
 | axis             | string         | **REQUIRED.** Axis of the spatial dimension (`x`, `y`).      |
 | description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number]      | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-element array. Open intervals with `null` are not allowed. |
-| values           | \[number]      | Optionally, a set of all potential values.                   |
+| values           | \[number]      | Optionally, an ordered list of all values.                   |
 | step             | number\|null   | The space between the values. Use `null` for irregularly spaced steps. |
 | reference_system | string\|number\|object | The spatial reference system for the data, specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
@@ -61,12 +61,12 @@ A spatial dimension in vertical (z) direction.
 | axis             | string           | **REQUIRED.** Axis of the spatial dimension, always `z`.     |
 | description      | string           | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|null\]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-element array. Use `null` for open intervals. |
-| values           | \[number\|string\] | A set of all potential values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
+| values           | \[number\|string\] | An ordered list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
 | step             | number\|null     | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string           | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
 | reference_system | string\|number\|object | The spatial reference system for the data, specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
-A Vertical Spatial Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both. 
+A Vertical Spatial Dimension Object MUST specify an `extent` or `values`. It MAY specify both. 
 
 ### Temporal Dimension Object
 
@@ -78,7 +78,7 @@ A temporal dimension based on the ISO 8601 standard. The temporal reference syst
 | type       | string          | **REQUIRED.** Type of the dimension, always `temporal`.      |
 | description | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent     | \[string\|null] | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-element array. The dates and/or times must be strings compliant to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). `null` is allowed for open date ranges. |
-| values     | \[string]       | If the dimension consists of set of specific values they can be listed here. The dates and/or times must be strings compliant to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). |
+| values     | \[string]       | If the dimension consists of an ordered list of specific values they can be listed here. The dates and/or times must be strings compliant to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). |
 | step       | string\|null    | The space between the temporal instances as [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations), e.g. `P1D`. Use `null` for irregularly spaced steps. |
 
 ### Vector Dimension Object
@@ -90,7 +90,7 @@ A vector dimension that defines a spatial dimension based on geometries.
 | type             | string         | **REQUIRED.** Type of the dimension, always `vector`.        |
 | description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | bbox             | \[number]      | **REQUIRED.** A single bounding box of the geometries as defined for [STAC Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#spatial-extent-object), but not nested. |
-| values           | \[string\|[GeoJSON Object](https://tools.ietf.org/html/rfc7946)] | Optionally, a representation of the vectors. This can be a WKT string, a GeoJSON object or generally a list of identifiers. |
+| values           | \[string\|[GeoJSON Object](https://tools.ietf.org/html/rfc7946)] | Optionally, a representation of the vectors. This can be a list of WKT strings, GeoJSON objects or identifiers. |
 | reference_system | string\|number\|object | The spatial reference system for the data, specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
 ### Additional Dimension Object
@@ -102,12 +102,12 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 | type             | string            | **REQUIRED.** Custom type of the dimension, never `spatial` or `vector`. |
 | description      | string            | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|null]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-element array. Use `null` for open intervals. |
-| values           | \[number\|string] | A set of all potential values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
+| values           | \[number\|string] | An ordered list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
 | step             | number\|null      | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string            | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
 | reference_system | string            | The reference system for the data.                           |
 
-An Additional Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both.
+An Additional Dimension Object MUST specify an `extent` or `values`. It MAY specify both.
 
 Note on "Additional Dimension" with type `temporal`:
 You can distinguish the "Temporal Dimension" from an "Additional Dimension" by checking whether the extent exists and contains strings.
@@ -124,7 +124,7 @@ A *Variable Object* defines a variable (or a multi-dimensional array). The varia
 | type             | string                       | **REQUIRED.** Type of the variable, either `data` or `auxiliary`. | 
 | description      | string                       | Detailed multi-line description to explain the variable. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|string\|null]      | If the variable consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-element array. Use `null` for open intervals. |
-| values           | \[number\|string]            | A set of all potential values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
+| values           | \[number\|string]            | An (ordered) list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
 | unit             | string                       | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
 
 **type**: The Variable `type` indicates whether what kind of variable is being described. It has two allowed values:
