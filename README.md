@@ -16,10 +16,14 @@ It specifies datacube related metadata, especially their dimensions and potentia
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
-## Item Properties and Collection Fields
+## Fields
 
-These fields may be added to either [Item](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md) 
-Properties or a [Collection](https://github.com/radiantearth/stac-spec/tree/master/collection-spec/collection-spec.md).
+The following fields can be used in the following parts of a STAC document:
+- [ ] Catalogs
+- [x] Collections
+- [x] Item Properties (incl. Summaries in Collections)
+- [x] Assets (both Collections and Items, incl. Item Asset Definitions in Collections)
+- [ ] Links
 
 | Field Name       | Type                                               | Description                                 |
 | ---------------- | -------------------------------------------------- | ------------------------------------------- |

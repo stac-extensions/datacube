@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Fields can also be used in assets. [#12](https://github.com/stac-extensions/datacube/issues/12)
+
 ### Changed
 
 - Clarified that `values` must be an ordered list and not a set of unordered values. [#11](https://github.com/stac-extensions/datacube/issues/11)
