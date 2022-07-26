@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2.1.0] - 2022-07-26
+
 ### Added
 
 - Fields can also be used in assets. [#12](https://github.com/stac-extensions/datacube/issues/12)
@@ -41,6 +43,7 @@ Initial independent release, see [previous history](https://github.com/radiantea
 ### Changed
 - Units for STAC dimensions should now be compliant to UDUNITS-2 units (singular) whenever available.
 
-[Unreleased]: <https://github.com/stac-extensions/datacube/compare/v2.0.0...HEAD>
+[Unreleased]: <https://github.com/stac-extensions/datacube/compare/v2.1.0...HEAD>
+[v2.1.0]: <https://github.com/stac-extensions/datacube/compare/v2.0.0...v2.1.0>
 [v2.0.0]: <https://github.com/stac-extensions/datacube/compare/v1.0.0...v2.0.0>
 [v1.0.0]: <https://github.com/stac-extensions/datacube/tree/v1.0.0>
