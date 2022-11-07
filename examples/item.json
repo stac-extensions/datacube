@@ -1,7 +1,7 @@
 {
   "stac_version": "1.0.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/datacube/v2.0.0/schema.json"
+    "https://stac-extensions.github.io/datacube/v2.1.0/schema.json"
   ],
   "id": "datacube-123",
   "type": "Feature",
@@ -97,26 +97,26 @@
           "blue"
         ]
       }
-    }
-  },
-  "cube:variables": {
-    "temp": {
-      "dimensions": [
-        "time",
-        "y",
-        "x",
-        "pressure_levels"
-      ],
-      "type": "data"
     },
-    "color": {
-      "dimensions": [],
-      "type": "auxiliary",
-      "values": [
-        "red",
-        "green",
-        "blue"
-      ]
+    "cube:variables": {
+      "temp": {
+        "dimensions": [
+          "time",
+          "y",
+          "x",
+          "pressure_levels"
+        ],
+        "type": "data"
+      },
+      "color": {
+        "dimensions": [],
+        "type": "auxiliary",
+        "values": [
+          "red",
+          "green",
+          "blue"
+        ]
+      }
     }
   },
   "assets": {

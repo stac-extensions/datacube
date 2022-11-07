@@ -1,44 +1,67 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+  "$id": "https://stac-extensions.github.io/datacube/v2.1.0/schema.json",
   "title": "Datacube Extension",
-  "description": "Datacube Extension for STAC Items and STAC Collections.",
+  "description": "STAC Datacube Extension for STAC Items and STAC Collections.",
   "oneOf": [
     {
-      "$comment": "This is the schema for STAC Items. Remove this object if this extension only applies to Collections.",
+      "$comment": "This is the schema for STAC Items.",
       "allOf": [
-        {
-          "$ref": "#/definitions/stac_extensions"
-        },
         {
           "type": "object",
           "required": [
-            "type",
-            "properties",
-            "assets"
+            "type"
           ],
           "properties": {
             "type": {
               "const": "Feature"
-            },
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        }
+      ],
+      "anyOf": [
+        {
+          "type": "object",
+          "required": [
+            "properties"
+          ],
+          "properties": {
             "properties": {
               "allOf": [
                 {
-                  "$comment": "Require fields here for Item Properties.",
-                  "required": [
-                    "cube:dimensions"
-                  ]
+                  "$ref": "#/definitions/require_field"
                 },
                 {
                   "$ref": "#/definitions/fields"
                 }
               ]
-            },
+            }
+          }
+        },
+        {
+          "$comment": "This validates the fields in Item Assets.",
+          "required": [
+            "assets"
+          ],
+          "properties": {
             "assets": {
-              "$comment": "This validates the fields in Item Assets, but does not require them.",
               "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/fields"
+              "not": {
+                "additionalProperties": {
+                  "not": {
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/require_field"
+                      },
+                      {
+                        "$ref": "#/definitions/fields"
+                      }
+                    ]
+                  }
+                }
               }
             }
           }
@@ -65,13 +88,10 @@
       ],
       "anyOf": [
         {
-          "$comment": "This is the schema for the top-level fields in a Collection. Remove this if this extension does not define top-level fields for Collections.",
+          "$comment": "This is the schema for the top-level fields in a Collection.",
           "allOf": [
             {
-              "$comment": "Require fields here for Collections (top-level).",
-              "required": [
-                "cube:dimensions"
-              ]
+              "$ref": "#/definitions/require_field"
             },
             {
               "$ref": "#/definitions/fields"
@@ -79,7 +99,7 @@
           ]
         },
         {
-          "$comment": "This validates the fields in Collection Assets, but does not require them.",
+          "$comment": "This validates the fields in Collection Assets.",
           "required": [
             "assets"
           ],
@@ -91,7 +111,7 @@
                   "not": {
                     "allOf": [
                       {
-                        "$ref": "#/definitions/require_any_field"
+                        "$ref": "#/definitions/require_field"
                       },
                       {
                         "$ref": "#/definitions/fields"
@@ -104,7 +124,7 @@
           }
         },
         {
-          "$comment": "This is the schema for the fields in Item Asset Definitions. It doesn't require any fields.",
+          "$comment": "This is the schema for the fields in Item Asset Definitions.",
           "required": [
             "item_assets"
           ],
@@ -152,7 +172,7 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "https://stac-extensions.github.io/datacube/v2.0.0/schema.json"
+            "const": "https://stac-extensions.github.io/datacube/v2.1.0/schema.json"
           }
         }
       }
@@ -162,6 +182,11 @@
       "anyOf": [
         {"required": ["cube:dimensions"]},
         {"required": ["cube:variables"]}
+      ]
+    },
+    "require_field": {
+      "required": [
+        "cube:dimensions"
       ]
     },
     "fields": {
