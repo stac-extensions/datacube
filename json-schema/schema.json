@@ -433,7 +433,7 @@
         "geometry_types":  {
           "type": "array",
           "uniqueItems": true,
-          "types": {
+          "items": {
             "type": "string",
             "enum": [
               "Point",
