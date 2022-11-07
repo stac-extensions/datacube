@@ -88,9 +88,11 @@ A vector dimension that defines a spatial dimension based on geometries.
 | Field Name       | Type           | Description                                                  |
 | ---------------- | -------------- | ------------------------------------------------------------ |
 | type             | string         | **REQUIRED.** Type of the dimension, always `vector`.        |
+| axes             | \[string]      | Axes of the vector dimension as an ordered set of `x`, `y` and `z`. Defaults to `x` and `y`. |
 | description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | bbox             | \[number]      | **REQUIRED.** A single bounding box of the geometries as defined for [STAC Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#spatial-extent-object), but not nested. |
 | values           | \[string\|[GeoJSON Object](https://tools.ietf.org/html/rfc7946)] | Optionally, a representation of the vectors. This can be a list of WKT strings, GeoJSON objects or identifiers. |
+| geometry_types   | \[GeoJSON Types](https://www.rfc-editor.org/rfc/rfc7946#section-1.4)] | A set of geometry types. If not present, mixed geometriy types must be assumed. |
 | reference_system | string\|number\|object | The spatial reference system for the data, specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
 ### Additional Dimension Object

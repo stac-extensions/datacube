@@ -358,6 +358,18 @@
           "type": "string",
           "const": "vector"
         },
+        "axes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "x",
+              "y",
+              "z"
+            ]
+          }
+        },
         "description": {
           "$ref": "#/definitions/description"
         },
@@ -391,7 +403,22 @@
                 "type": "string"
               }
             ]
-            
+          }
+        },
+        "geometry_types":  {
+          "type": "array",
+          "uniqueItems": true,
+          "types": {
+            "type": "string",
+            "enum": [
+              "Point",
+              "MultiPoint",
+              "LineString",
+              "MultiLineString",
+              "Polygon",
+              "MultiPolygon",
+              "GeometryCollection"
+            ]
           }
         },
         "reference_system": {
