@@ -4,7 +4,7 @@
 - **Identifier:** <https://stac-extensions.github.io/datacube/v2.1.0/schema.json>
 - **Field Name Prefix:** cube
 - **Scope:** Item, Collection
-- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
+- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Candidate
 - **Owner**: @m-mohr
 
 This document explains the Datacube Extension to the [SpatioTemporal Asset Catalog](https://github.com/radiantearth/stac-spec) (STAC) specification.
