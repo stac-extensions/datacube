@@ -117,7 +117,7 @@
     "datetime": "2016-05-03T13:21:30.040Z",
     "cube:dimensions": {
       "vector": {
-        "type": "vector",
+        "type": "geometries",
         "bbox": [
           -122.51575469970703,
           37.50373410549169,

@@ -261,7 +261,7 @@
           "not": {
             "enum": [
               "spatial",
-              "vector"
+              "geometries"
             ]
           }
         },
@@ -294,7 +294,7 @@
       }
     },
     "horizontal_spatial_dimension": {
-      "title": "Horizontal Spatial Dimension Object",
+      "title": "Horizontal Spatial Raster Dimension Object",
       "type": "object",
       "required": [
         "type",
@@ -372,7 +372,7 @@
       }
     },
     "vector_dimension": {
-      "title": "Vector Dimension Object",
+      "title": "Spatial Vector Dimension Object",
       "type": "object",
       "required": [
         "type",
@@ -381,7 +381,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "const": "vector"
+          "const": "geometries"
         },
         "axes": {
           "type": "array",

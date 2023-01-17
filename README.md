@@ -41,14 +41,14 @@ certain values, too. `extent`, `values` and `step` share the same definition, bu
 depending on the type of dimension. Whenever it's useful to specify these fields, the objects add the additional fields `reference_system` 
 and `unit` with very similar definitions across the objects.
 
-### Horizontal Spatial Dimension Object
+### Horizontal Spatial Raster Dimension Object
 
-A spatial dimension in one of the horizontal (x or y) directions.
+A spatial raster dimension in one of the horizontal (x or y) directions.
 
 | Field Name       | Type           | Description                                                  |
 | ---------------- | -------------- | ------------------------------------------------------------ |
 | type             | string         | **REQUIRED.** Type of the dimension, always `spatial`.       |
-| axis             | string         | **REQUIRED.** Axis of the spatial dimension (`x`, `y`).      |
+| axis             | string         | **REQUIRED.** Axis of the spatial raster dimension (`x`, `y`).      |
 | description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number]      | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-element array. Open intervals with `null` are not allowed. |
 | values           | \[number]      | Optionally, an ordered list of all values.                   |
@@ -85,17 +85,17 @@ A temporal dimension based on the ISO 8601 standard. The temporal reference syst
 | values     | \[string]       | If the dimension consists of an ordered list of specific values they can be listed here. The dates and/or times must be strings compliant to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). |
 | step       | string\|null    | The space between the temporal instances as [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations), e.g. `P1D`. Use `null` for irregularly spaced steps. |
 
-### Vector Dimension Object
+### Spatial Vector Dimension Object
 
 A vector dimension that defines a spatial dimension based on geometries.
 
 | Field Name       | Type           | Description                                                  |
 | ---------------- | -------------- | ------------------------------------------------------------ |
-| type             | string         | **REQUIRED.** Type of the dimension, always `vector`.        |
+| type             | string         | **REQUIRED.** Type of the dimension, always `geometries`.    |
 | axes             | \[string]      | Axes of the vector dimension as an ordered set of `x`, `y` and `z`. Defaults to `x` and `y`. |
 | description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | bbox             | \[number]      | **REQUIRED.** A single bounding box of the geometries as defined for [STAC Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#spatial-extent-object), but not nested. |
-| values           | \[string\|[GeoJSON Object](https://tools.ietf.org/html/rfc7946)] | Optionally, a representation of the vectors. This can be a list of WKT strings, GeoJSON objects or identifiers. |
+| values           | \[string\]     | Optionally, a representation of the geometries. This could be a list of WKT strings or other identifiers. |
 | geometry_types   | \[[GeoJSON Types](https://www.rfc-editor.org/rfc/rfc7946#section-1.4)] | A set of geometry types. If not present, mixed geometry types must be assumed. |
 | reference_system | string\|number\|object | The spatial reference system for the data, specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
@@ -105,7 +105,7 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 
 | Field Name       | Type              | Description                                                  |
 | ---------------- | ----------------- | ------------------------------------------------------------ |
-| type             | string            | **REQUIRED.** Custom type of the dimension, never `spatial` or `vector`. |
+| type             | string            | **REQUIRED.** Custom type of the dimension, never `spatial` or `geometries`. |
 | description      | string            | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|null]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-element array. Use `null` for open intervals. |
 | values           | \[number\|string] | An ordered list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
