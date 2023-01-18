@@ -419,15 +419,8 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "oneOf": [
-              {
-                "$ref": "https://geojson.org/schema/GeoJSON.json"
-              },
-              {
-                "description": "ID or WKT",
-                "type": "string"
-              }
-            ]
+            "description": "WKT or Identifier",
+            "type": "string"
           }
         },
         "geometry_types":  {
