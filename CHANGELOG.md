@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- A new Spatial Vector Cube Dimension for geometries
+
 ## [v2.1.0] - 2022-07-26
 
 ### Added
