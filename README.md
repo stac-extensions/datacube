@@ -99,6 +99,8 @@ A vector dimension that defines a spatial dimension based on geometries.
 | geometry_types   | \[[GeoJSON Types](https://www.rfc-editor.org/rfc/rfc7946#section-1.4)] | A set of geometry types. If not present, mixed geometry types must be assumed. |
 | reference_system | string\|number\|object | The spatial reference system for the data, specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
+For a general explanation what a vector datacube and a vector dimension is, please read the article "[Vector Data Cubes](https://r-spatial.org/r/2022/09/12/vdc.html)".
+
 ### Additional Dimension Object
 
 An additional dimension that is not `spatial`, but may be `temporal` if the data is not compliant with ISO 8601 (see below).

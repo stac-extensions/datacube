@@ -114,7 +114,9 @@
   ],
   "properties": {
     "title": "Multi-dimensional vector data cube in a STAC Item.",
-    "datetime": "2016-05-03T13:21:30.040Z",
+    "start_datetime": "2016-01-01T00:00:00Z",
+    "datetime": "2017-01-01T00:00:00Z",
+    "end_datetime": "2018-01-01T00:00:00Z",
     "cube:dimensions": {
       "vector": {
         "type": "geometries",
