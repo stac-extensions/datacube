@@ -91,7 +91,7 @@ A vector dimension that defines a spatial dimension based on geometries.
 
 | Field Name       | Type           | Description                                                  |
 | ---------------- | -------------- | ------------------------------------------------------------ |
-| type             | string         | **REQUIRED.** Type of the dimension, always `geometries`.    |
+| type             | string         | **REQUIRED.** Type of the dimension, always `geometry`.    |
 | axes             | \[string]      | Axes of the vector dimension as an ordered set of `x`, `y` and `z`. Defaults to `x` and `y`. |
 | description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | bbox             | \[number]      | **REQUIRED.** A single bounding box of the geometries as defined for [STAC Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#spatial-extent-object), but not nested. |
@@ -107,7 +107,7 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 
 | Field Name       | Type              | Description                                                  |
 | ---------------- | ----------------- | ------------------------------------------------------------ |
-| type             | string            | **REQUIRED.** Custom type of the dimension, never `spatial` or `geometries`. |
+| type             | string            | **REQUIRED.** Custom type of the dimension, never `spatial` or `geometry`. |
 | description      | string            | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|null]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-element array. Use `null` for open intervals. |
 | values           | \[number\|string] | An ordered list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |

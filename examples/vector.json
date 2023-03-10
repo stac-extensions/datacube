@@ -119,7 +119,7 @@
     "end_datetime": "2018-01-01T00:00:00Z",
     "cube:dimensions": {
       "vector": {
-        "type": "geometries",
+        "type": "geometry",
         "bbox": [
           -122.51575469970703,
           37.50373410549169,

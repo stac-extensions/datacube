@@ -261,7 +261,7 @@
           "not": {
             "enum": [
               "spatial",
-              "geometries"
+              "geometry"
             ]
           }
         },
@@ -381,7 +381,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "const": "geometries"
+          "const": "geometry"
         },
         "axes": {
           "type": "array",
