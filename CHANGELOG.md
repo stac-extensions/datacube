@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2.2.0] - 2023-05-03
+
 ### Added
 
 - A new Spatial Vector Cube Dimension for geometries
@@ -47,7 +49,8 @@ Initial independent release, see [previous history](https://github.com/radiantea
 ### Changed
 - Units for STAC dimensions should now be compliant to UDUNITS-2 units (singular) whenever available.
 
-[Unreleased]: <https://github.com/stac-extensions/datacube/compare/v2.1.0...HEAD>
+[Unreleased]: <https://github.com/stac-extensions/datacube/compare/v2.2.0...HEAD>
+[v2.2.0]: <https://github.com/stac-extensions/datacube/compare/v2.1.0...v2.2.0>
 [v2.1.0]: <https://github.com/stac-extensions/datacube/compare/v2.0.0...v2.1.0>
 [v2.0.0]: <https://github.com/stac-extensions/datacube/compare/v1.0.0...v2.0.0>
 [v1.0.0]: <https://github.com/stac-extensions/datacube/tree/v1.0.0>
