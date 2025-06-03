@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated PROJJSON schema version from 0.4 to 0.7
 
+### Fixed
+
+- Clarified that the given datacube metadata (`extent`, `bbox`, `values` and `step` respectively) must be provided in the given `reference_system`.
+
 ## [v2.2.0] - 2023-05-03
 
 ### Added
