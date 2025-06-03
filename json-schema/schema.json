@@ -610,7 +610,7 @@
           "minimum": 0
         },
         {
-          "$ref": "https://proj.org/schemas/v0.4/projjson.schema.json"
+          "$ref": "https://proj.org/schemas/v0.7/projjson.schema.json"
         }
       ],
       "default": 4326
