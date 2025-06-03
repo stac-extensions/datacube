@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "stac_extensions": [
     "https://stac-extensions.github.io/datacube/v2.2.0/schema.json"
   ],
@@ -168,7 +168,7 @@
       ]
     },
     "time_bnds": {
-      "type": "data",
+      "type": "auxiliary",
       "description": "",
       "dimensions": [
         "time",
@@ -176,7 +176,7 @@
       ]
     },
     "lambert_conformal_conic": {
-      "type": "data",
+      "type": "auxiliary",
       "description": "Lambert Conformal Conic.",
       "values": [
         -32767
