@@ -106,7 +106,9 @@
           "x",
           "pressure_levels"
         ],
-        "type": "data"
+        "type": "data",
+        "nodata": "nan",
+        "data_type": "float32"
       },
       "color": {
         "dimensions": [],
