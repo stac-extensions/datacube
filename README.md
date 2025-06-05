@@ -136,7 +136,7 @@ A *Variable Object* defines a variable (or a multi-dimensional array). The varia
 | values           | \[number\|string]            | An (ordered) list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
 | unit             | string                       | The unit of measurement for the data, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or singular unit name) or [UCUM](https://ucum.org). |
 | nodata           | number\|string               | Value used to identify no-data, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#no-data) for more details. |
-| nodata           | number\|string               | The data type of the values in the datacube, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#data-types) for more details. |
+| data_type        | string                       | The data type of the values in the datacube, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#data-types) for more details. |
 
 **type**: The Variable `type` indicates whether what kind of variable is being described. It has two allowed values:
 
