@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2.3.0] - 2025-06-18
+
 ### Added
 
 - Variables: Added `nodata` and `data_type` from
@@ -63,7 +65,8 @@ Initial independent release, see [previous history](https://github.com/radiantea
 
 - Units for STAC dimensions should now be compliant to UDUNITS-2 units (singular) whenever available.
 
-[Unreleased]: <https://github.com/stac-extensions/datacube/compare/v2.2.0...HEAD>
+[Unreleased]: <https://github.com/stac-extensions/datacube/compare/v2.3.0...HEAD>
+[v2.3.0]: <https://github.com/stac-extensions/datacube/compare/v2.2.0...v2.3.0>
 [v2.2.0]: <https://github.com/stac-extensions/datacube/compare/v2.1.0...v2.2.0>
 [v2.1.0]: <https://github.com/stac-extensions/datacube/compare/v2.0.0...v2.1.0>
 [v2.0.0]: <https://github.com/stac-extensions/datacube/compare/v1.0.0...v2.0.0>
