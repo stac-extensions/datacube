@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Variables: Added `nodata` and `data_type` from
+  [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#data-values)
+
 ### Changed
 
 - Updated PROJJSON schema version from 0.4 to 0.7
@@ -55,6 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Initial independent release, see [previous history](https://github.com/radiantearth/stac-spec/commits/v1.0.0-rc.1/extensions/datacube)
 
 ### Changed
+
 - Units for STAC dimensions should now be compliant to UDUNITS-2 units (singular) whenever available.
 
 [Unreleased]: <https://github.com/stac-extensions/datacube/compare/v2.2.0...HEAD>

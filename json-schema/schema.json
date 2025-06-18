@@ -531,6 +531,12 @@
         },
         "unit": {
           "$ref": "#/definitions/unit"
+        },
+        "nodata": {
+          "$ref": "#/definitions/nodata"
+        },
+        "data_type": {
+          "$ref": "#/definitions/data_type"
         }
       }
     },
@@ -596,7 +602,46 @@
       ]
     },
     "unit": {
+      "$comment": "The schema is from common metadata, see https://github.com/radiantearth/stac-spec/blob/v1.1.0/item-spec/json-schema/data-values.json",
       "type": "string"
+    },
+    "data_type": {
+      "$comment": "The schema is from common metadata, see https://github.com/radiantearth/stac-spec/blob/v1.1.0/item-spec/json-schema/data-values.json",
+      "type": "string",
+      "enum": [
+        "int8",
+        "int16",
+        "int32",
+        "int64",
+        "uint8",
+        "uint16",
+        "uint32",
+        "uint64",
+        "float16",
+        "float32",
+        "float64",
+        "cint16",
+        "cint32",
+        "cfloat32",
+        "cfloat64",
+        "other"
+      ]
+    },
+    "nodata": {
+      "$comment": "The schema is from common metadata, see https://github.com/radiantearth/stac-spec/blob/v1.1.0/item-spec/json-schema/data-values.json",
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "enum": [
+            "nan",
+            "inf",
+            "-inf"
+          ]
+        }
+      ]
     },
     "reference_system_spatial": {
       "oneOf": [
