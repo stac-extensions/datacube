@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added `unit` field to more dimensions
+
+### Changed
+
+- Aligned description of the `unit` field with the common metadata specificaion (UCUM preferred)
+
 ## [v2.3.0] - 2025-06-18
 
 ### Added
