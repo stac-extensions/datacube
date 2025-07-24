@@ -320,6 +320,9 @@
         "step": {
           "$ref": "#/definitions/step"
         },
+        "unit": {
+          "$ref": "#/definitions/unit"
+        },
         "reference_system": {
           "$ref": "#/definitions/reference_system_spatial"
         }
@@ -487,6 +490,9 @@
             "string",
             "null"
           ]
+        },
+        "unit": {
+          "$ref": "#/definitions/unit"
         }
       }
     },
