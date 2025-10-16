@@ -254,7 +254,7 @@
         ]
       }
     },
-    "cube:dimensions_refs": {
+    "cube:dimension_refs": {
       "type": "array",
       "items": {
         "type": "string"
@@ -532,7 +532,7 @@
     },
     "bands": {
       "required": [
-        "cube:dimensions_refs",
+        "cube:dimension_refs",
         "cube:type"
       ],
       "$ref": "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/bands.json#bands"
