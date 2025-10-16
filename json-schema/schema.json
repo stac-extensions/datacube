@@ -180,8 +180,26 @@
     "require_any_field": {
       "$comment": "Please list all fields here so that we can force the existance of one of them in other parts of the schemas.",
       "anyOf": [
-        {"required": ["cube:dimensions"]},
-        {"required": ["cube:variables"]}
+        {
+          "required": [
+            "cube:dimensions"
+          ]
+        },
+        {
+          "required": [
+            "cube:dimension_refs"
+          ]
+        },
+        {
+          "required": [
+            "cube:type"
+          ]
+        },
+        {
+          "required": [
+            "cube:values"
+          ]
+        }
       ]
     },
     "require_field": {
@@ -196,8 +214,17 @@
         "cube:dimensions": {
           "$ref": "#/definitions/cube:dimensions"
         },
-        "cube:variables": {
-          "$ref": "#/definitions/cube:variables"
+        "cube:dimension_refs": {
+          "$ref": "#/definitions/cube:dimension_refs"
+        },
+        "cube:type": {
+          "$ref": "#/definitions/cube:type"
+        },
+        "cube:values": {
+          "$ref": "#/definitions/values"
+        },
+        "bands": {
+          "$ref": "#/definitions/bands"
         }
       },
       "patternProperties": {
@@ -227,11 +254,18 @@
         ]
       }
     },
-    "cube:variables": {
-      "type": "object",
-      "additionalProperties": {
-          "$ref": "#/definitions/variable"
+    "cube:dimensions_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
       }
+    },
+    "cube:type": {
+      "type": "string",
+      "enum": [
+        "data",
+        "auxiliary"
+      ]
     },
     "additional_dimension": {
       "title": "Additional Dimension Object",
@@ -406,12 +440,12 @@
           "type": "array",
           "oneOf": [
             {
-              "minItems":4,
-              "maxItems":4
+              "minItems": 4,
+              "maxItems": 4
             },
             {
-              "minItems":6,
-              "maxItems":6
+              "minItems": 6,
+              "maxItems": 6
             }
           ],
           "items": {
@@ -426,7 +460,7 @@
             "type": "string"
           }
         },
-        "geometry_types":  {
+        "geometry_types": {
           "type": "array",
           "uniqueItems": true,
           "items": {
@@ -496,55 +530,11 @@
         }
       }
     },
-    "variable": {
-      "title": "Variable Object",
-      "type": "object",
+    "bands": {
       "required": [
-        "dimensions"
+        "cube:dimensions_refs"
       ],
-      "properties": {
-        "variable_type": {
-          "type": "string",
-          "enum": [
-            "data",
-            "auxiliary"
-          ]
-        },
-        "description": {
-          "$ref": "#/definitions/description"
-        },
-        "dimensions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "values": {
-          "type": "array",
-          "minItems": 1
-        },
-        "extent": {
-          "type": "array",
-          "minItems": 2,
-          "maxItems": 2,
-          "items": {
-            "type": [
-              "string",
-              "number",
-              "null"
-            ]
-          }
-        },
-        "unit": {
-          "$ref": "#/definitions/unit"
-        },
-        "nodata": {
-          "$ref": "#/definitions/nodata"
-        },
-        "data_type": {
-          "$ref": "#/definitions/data_type"
-        }
-      }
+      "$ref": "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/bands.json#bands"
     },
     "type_spatial": {
       "type": "string",

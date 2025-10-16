@@ -82,106 +82,106 @@
       ]
     }
   },
-  "cube:variables": {
+  "bands": {
     "lat": {
-      "type": "auxiliary",
-      "extent": [
-        17.960035,
-        23.512327
-      ],
+      "cube:type": "auxiliary",
+      "statistics": {
+        "minimum": 17.960035,
+        "maximum": 23.512327
+      },
       "description": "latitude coordinate",
       "unit": "degrees_north",
-      "dimensions": [
+      "cube:dimension_refs": [
         "y",
         "x"
       ]
     },
     "lon": {
-      "type": "auxiliary",
-      "extent": [
-        -160.29884,
-        -154.77806
-      ],
+      "cube:type": "auxiliary",
+      "statistics": {
+        "minimum": -160.29884,
+        "maximum": -154.77806
+      },
       "description": "longitude coordinate",
       "unit": "degrees_east",
-      "dimensions": [
+      "cube:dimension_refs": [
         "y",
         "x"
       ]
     },
     "prcp": {
-      "type": "data",
+      "cube:type": "data",
       "description": "The total accumulated precipitation over the monthly period of the daily total precipitation. Sum of all forms of precipitation converted to a water-equivalent depth.",
-      "extent": [
-        0,
-        null
-      ],
+      "statistics": {
+        "minimum": 0,
+        "maximum": null
+      },
       "unit": "mm",
-      "dimensions": [
+      "cube:dimension_refs": [
         "time",
         "y",
         "x"
       ]
     },
     "swe": {
-      "type": "data",
+      "cube:type": "data",
       "description": "The average of the daily snow water equivalent (the amount of water contained within the snowpack) in kilograms per square meter over the monthly period.",
-      "extent": [
-        0,
-        null
-      ],
+      "statistics": {
+        "minimum": 0,
+        "maximum": null
+      },
       "unit": "kg/m2",
-      "dimensions": [
+      "cube:dimension_refs": [
         "time",
         "y",
         "x"
       ]
     },
     "tmin": {
-      "type": "data",
+      "cube:type": "data",
       "description": "The average minimum temperature for a daily period over the entire monthly period.",
       "unit": "degrees C",
-      "dimensions": [
+      "cube:dimension_refs": [
         "time",
         "y",
         "x"
       ]
     },
     "tmax": {
-      "type": "data",
+      "cube:type": "data",
       "description": "The average maximum temperature for a daily period over the entire monthly period.",
       "unit": "degrees C",
-      "dimensions": [
+      "cube:dimension_refs": [
         "time",
         "y",
         "x"
       ]
     },
     "vp": {
-      "type": "data",
+      "cube:type": "data",
       "description": "The average of the daily average partial pressure of water vapor over the monthly period.",
       "unit": "Pa",
-      "dimensions": [
+      "cube:dimension_refs": [
         "time",
         "y",
         "x"
       ]
     },
     "time_bnds": {
-      "type": "auxiliary",
+      "cube:type": "auxiliary",
       "description": "",
-      "dimensions": [
+      "cube:dimension_refs": [
         "time",
         "nv"
       ]
     },
     "lambert_conformal_conic": {
-      "type": "auxiliary",
+      "cube:type": "auxiliary",
       "description": "Lambert Conformal Conic.",
-      "values": [
+      "cube:values": [
         -32767
       ],
-      "dimensions": []
+      "cube:dimension_refs": []
     }
   }
 }

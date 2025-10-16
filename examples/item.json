@@ -98,22 +98,22 @@
         ]
       }
     },
-    "cube:variables": {
+    "bands": {
       "temp": {
-        "dimensions": [
+        "cube:dimension_refs": [
           "time",
           "y",
           "x",
           "pressure_levels"
         ],
-        "type": "data",
+        "cube:type": "data",
         "nodata": "nan",
         "data_type": "float32"
       },
       "color": {
-        "dimensions": [],
-        "type": "auxiliary",
-        "values": [
+        "cube:dimension_refs": [],
+        "cube:type": "auxiliary",
+        "cube:values": [
           "red",
           "green",
           "blue"
