@@ -26,12 +26,34 @@ The following fields can be used in the following parts of a STAC document:
 - [x] Assets (both Collections and Items, incl. Item Asset Definitions in Collections)
 - [ ] Links
 
-| Field Name       | Type                                               | Description                                 |
-| ---------------- | -------------------------------------------------- | ------------------------------------------- |
-| cube:dimensions  | Map<string, [Dimension Object](#dimension-object)> | **REQUIRED.** Uniquely named dimensions of the datacube. |
-| cube:variables   | Map<string, [Variable Object](#variable-object)>   | Uniquely named variables of the datacube. |
+| Field Name           | Type                                               | Description                                 |
+| -------------------- | -------------------------------------------------- | ------------------------------------------- |
+| cube:dimensions      | Map<string, [Dimension Object](#dimension-object)> | **REQUIRED.** Uniquely named dimensions of the datacube. |
 
-The keys of `cube:dimensions` and `cube:variables` should be unique together; a key like `lat` should not be both a dimension and a variable.
+- [ ] Catalogs
+- [ ] Collections
+- [ ] Item Properties (incl. Summaries in Collections)
+- [ ] Assets (both Collections and Items, incl. Item Asset Definitions in Collections)
+- [x] [Bands](https://github.com/radiantearth/stac-spec/blob/master/commons/common-metadata.md#bands)
+- [ ] Links
+
+| Field Name           | Type              | Description                                 |
+| -------------------- | ----------------- | ------------------------------------------- |
+| cube:dimensions_refs | Array<string>     | **REQUIRED.** The dimensions of the variable. This should refer to keys in the cube:dimensions object or be an empty list if the variable has no dimensions. |
+| cube:type            | string            | **REQUIRED.** Type of the variable, either data or auxiliary. |
+| cube:values          | Array<string>     | An (ordered) list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
+
+**cube:type**: The Variable `cube:type` indicates whether what kind of variable is being described. It has two allowed values:
+
+1. `data`: a variable indicating some measured value, for example "precipitation", "temperature", etc.
+2. `auxiliary`: a variable that contains coordinate data, but isn't a dimension in `cube:dimensions`.
+  For example, the values of the datacube might be provided in the projected coordinate reference system, but
+  the datacube could have a variable `lon` with dimensions `(y, x)`, giving the longitude at each point.
+
+See the [CF Conventions](http://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#terminology)
+for more on auxiliary coordinates.
+
+The keys of `cube:dimensions` and `bands` should be unique together; a key like `lat` should not be both a dimension and a band.
 
 ### Dimension Object
 
@@ -125,30 +147,6 @@ You can distinguish the "Temporal Dimension" from an "Additional Dimension" by c
 So if the `type` equals `temporal` and `extent` is an array of strings/null, then you have a "Temporal Dimension",
 otherwise you have an "Additional Dimension".
 
-### Variable Object
-
-A *Variable Object* defines a variable (or a multi-dimensional array). The variable may have dimensions, which are described by [Dimension Objects](#dimension-object).
-
-| Field Name       | Type                     | Description |
-| ---------------- | -------------------------| ----------- |
-| dimensions       | \[string]                | **REQUIRED.** The dimensions of the variable. This should refer to keys in the ``cube:dimensions`` object or be an empty list if the variable has no dimensions. |
-| type             | string                   | **REQUIRED.** Type of the variable, either `data` or `auxiliary`. | 
-| description      | string                   | Detailed multi-line description to explain the variable. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| extent           | \[number\|string\|null\] | If the variable consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-element array. Use `null` for open intervals. |
-| values           | \[number\|string]        | An (ordered) list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
-| unit             | string                   | The unit of measurement for the data, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
-| nodata           | number\|string           | Value used to identify no-data, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#no-data) for more details. |
-| data_type        | string                   | The data type of the values in the datacube, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#data-types) for more details. |
-
-**type**: The Variable `type` indicates whether what kind of variable is being described. It has two allowed values:
-
-1. `data`: a variable indicating some measured value, for example "precipitation", "temperature", etc.
-2. `auxiliary`: a variable that contains coordinate data, but isn't a dimension in `cube:dimensions`.
-  For example, the values of the datacube might be provided in the projected coordinate reference system, but
-  the datacube could have a variable `lon` with dimensions `(y, x)`, giving the longitude at each point.
-
-See the [CF Conventions](http://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#terminology)
-for more on auxiliary coordinates.
 
 ## Contributing
 
