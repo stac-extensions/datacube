@@ -1,0 +1,90 @@
+{
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/datacube/v2.3.0/schema.json"
+  ],
+  "id": "datacube-dggs-123",
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -10,
+          40
+        ],
+        [
+          10,
+          40
+        ],
+        [
+          10,
+          55
+        ],
+        [
+          -10,
+          55
+        ],
+        [
+          -10,
+          40
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -10,
+    40,
+    10,
+    55
+  ],
+  "properties": {
+    "title": "DGGS-based data cube in a STAC Item.",
+    "datetime": "2024-01-01T00:00:00Z",
+    "cube:dimensions": {
+      "dggs": {
+        "type": "dggs",
+        "reference_system": "https://www.opengis.net/def/dggrs/OGC/1.0/HEALPix",
+        "resolution": 6,
+        "step": 1,
+        "values": [
+          "C1A",
+          "C1B",
+          "C1C"
+        ]
+      },
+      "time": {
+        "type": "temporal",
+        "extent": [
+          "2024-01-01T00:00:00Z",
+          "2024-12-31T23:59:59Z"
+        ],
+        "step": "P1M"
+      }
+    },
+    "cube:variables": {
+      "temperature": {
+        "dimensions": [
+          "time",
+          "dggs"
+        ],
+        "type": "data",
+        "unit": "K",
+        "data_type": "float32"
+      }
+    }
+  },
+  "assets": {
+    "data": {
+      "href": "http://cool-sat.com/catalog/datacube-dggs-123/data.zarr",
+      "type": "application/zarr",
+      "title": "DGGS Data cube"
+    }
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "http://cool-sat.com/catalog/datacube-dggs-123/item.json"
+    }
+  ]
+}
