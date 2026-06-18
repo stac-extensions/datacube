@@ -210,6 +210,9 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "$ref": "#/definitions/dggs_dimension"
+          },
+          {
             "$ref": "#/definitions/vector_dimension"
           },
           {
@@ -261,7 +264,8 @@
           "not": {
             "enum": [
               "spatial",
-              "geometry"
+              "geometry",
+              "dggs"
             ]
           }
         },
@@ -444,6 +448,70 @@
         },
         "reference_system": {
           "$ref": "#/definitions/reference_system_spatial"
+        }
+      }
+    },
+    "dggs_dimension": {
+      "title": "Spatial DGGS Dimension Object",
+      "type": "object",
+      "required": [
+        "type",
+        "reference_system"
+      ],
+      "not": {
+        "required": [
+          "axis"
+        ]
+      },
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "dggs"
+        },
+        "description": {
+          "$ref": "#/definitions/description"
+        },
+        "extent": {
+          "title": "Spatial extent",
+          "description": "Bounding box of DGGS zones following GeoJSON bbox semantics: [west, south, east, north] or [west, south, minz, east, north, maxz].",
+          "type": "array",
+          "oneOf": [
+            {
+              "minItems": 4,
+              "maxItems": 4
+            },
+            {
+              "minItems": 6,
+              "maxItems": 6
+            }
+          ],
+          "items": {
+            "type": "number"
+          }
+        },
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "description": "Zone identifier",
+            "type": "string"
+          }
+        },
+        "resolution": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "DGGS refinement level used by the zone identifiers."
+        },
+        "step": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "reference_system": {
+          "type": "string",
+          "description": "Identifier of the DGGS reference system (DGGRS), preferably a URI. This is not a CRS."
         }
       }
     },

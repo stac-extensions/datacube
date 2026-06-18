@@ -13,6 +13,10 @@ It specifies datacube related metadata, especially their dimensions and potentia
 - Examples:
   - [Item example](examples/item.json): Shows the basic usage of the extension in a STAC Item
   - [Collection example](examples/collection.json): Shows the basic usage of the extension in a STAC Collection
+  - [Item asset example](examples/item_asset.json): Shows usage of the extension in Item Assets
+  - [Vector example](examples/vector.json): Shows a vector dimension with geometry metadata
+  - [Daymet HI annual example](examples/daymet-hi-annual.json): Shows a real-world Collection with datacube metadata
+  - [DGGS item example](examples/dggs.json): Shows usage of a DGGS-based spatial dimension in a STAC Item
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
@@ -73,6 +77,36 @@ A spatial dimension in vertical (z) direction.
 | reference_system | string\|number\|object | The spatial reference system for the data and datacube metadata (`extent`, `values` and `step`), specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
 A Vertical Spatial Dimension Object MUST specify an `extent` or `values`. It MAY specify both.
+
+### Spatial DGGS Dimension Object
+
+A spatial dimension based on a Discrete Global Grid System (DGGS).
+
+| Field Name       | Type           | Description                                                  |
+| ---------------- | -------------- | ------------------------------------------------------------ |
+| type             | string         | **REQUIRED.** Type of the dimension, always `dggs`. |
+| description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| extent           | \[number\]     | The spatial extent of the DGGS zones as a GeoJSON-style bbox: `[west, south, east, north]` or `[west, south, minz, east, north, maxz]`. |
+| values           | \[string\]     | An ordered list of DGGS zone identifiers. Useful when enumerating a known set of zones (for example, a tile index or explicit zone subset). |
+| resolution       | integer        | The DGGS refinement level used by the zone identifiers. Useful to state the hierarchy level explicitly when `values` are present. |
+| step             | integer\|null  | The spacing between refinement levels when multiple levels are represented. Use `null` for irregular level spacing. |
+| reference_system | string         | **REQUIRED.** Identifier of the DGGS reference system (DGGRS), preferably a URI. |
+
+It is RECOMMENDED that a Spatial DGGS Dimension Object specifies at least one of `extent` or `values`
+unless it would be equivalent to the bbox/extent in the containing Item/Collection.
+
+For DGGS dimensions, `reference_system` identifies the DGGS reference system (DGGRS), not a coordinate reference system (CRS).
+Values such as `https://www.opengis.net/def/dggrs/OGC/1.0/HEALPix` from the
+[OGC DGGRS Register](https://defs.opengis.net/prez/catalogs/ogc-cat:register/col/def:dggrs) are valid examples.
+
+Guidance for vertical information with DGGS:
+
+- Most DGGS implementations used in practice are surface-based (2D).
+- For elevation, depth, pressure level, or altitude, prefer a separate
+  [Vertical Spatial Dimension Object](#vertical-spatial-dimension-object) with `axis` set to `z`.
+- Use DGGS-only encoding of `z` only if the selected DGGRS natively defines volumetric zones and the zone identifiers represent those volumes.
+- In most interoperable STAC/datacube use cases, model horizontal partitioning as `dggs`
+  and vertical structure as a separate `z` dimension.
 
 ### Temporal Dimension Object
 
