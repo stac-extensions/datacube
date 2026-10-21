@@ -45,12 +45,11 @@
       "dggs": {
         "type": "dggs",
         "reference_system": "https://www.opengis.net/def/dggrs/OGC/1.0/HEALPix",
-        "resolution": 6,
-        "step": 1,
+        "resolution": 2,
         "values": [
-          "C1A",
-          "C1B",
-          "C1C"
+          "C1-A",
+          "C1-B",
+          "C1-C"
         ]
       },
       "time": {
