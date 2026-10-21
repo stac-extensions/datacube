@@ -118,7 +118,6 @@ A spatial dimension based on a Discrete Global Grid System (DGGS).
 | extent           | \[number\]     | The spatial extent of the DGGS zones as a GeoJSON-style bbox: `[west, south, east, north]` or `[west, south, minz, east, north, maxz]`. |
 | values           | \[string\]     | An ordered list of DGGS zone identifiers. Useful when enumerating a known set of zones (for example, a tile index or explicit zone subset). |
 | resolution       | integer        | The DGGS refinement level used by the zone identifiers. Useful to state the hierarchy level explicitly when `values` are present. |
-| step             | integer\|null  | The spacing between refinement levels when multiple levels are represented. Use `null` for irregular level spacing. |
 | reference_system | string         | **REQUIRED.** Identifier of the DGGS reference system (DGGRS), preferably a URI. |
 
 It is RECOMMENDED that a Spatial DGGS Dimension Object specifies at least one of `extent` or `values`
@@ -127,6 +126,8 @@ unless it would be equivalent to the bbox/extent in the containing Item/Collecti
 For DGGS dimensions, `reference_system` identifies the DGGS reference system (DGGRS), not a coordinate reference system (CRS).
 Values such as `https://www.opengis.net/def/dggrs/OGC/1.0/HEALPix` from the
 [OGC DGGRS Register](https://defs.opengis.net/prez/catalogs/ogc-cat:register/col/def:dggrs) are valid examples.
+Additional DGGS metadata, e.g. the indexing scheme of the zone identifiers,
+can be provided through the [DGGS Extension](https://github.com/stac-extensions/dggs).
 
 Guidance for vertical information with DGGS:
 
