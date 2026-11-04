@@ -509,11 +509,6 @@
             "type": "string"
           }
         },
-        "resolution": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "DGGS refinement level used by the zone identifiers."
-        },
         "reference_system": {
           "type": "string",
           "description": "Identifier of the DGGS reference system (DGGRS), preferably a URI. This is not a CRS."

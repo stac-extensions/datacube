@@ -1,7 +1,8 @@
 {
   "stac_version": "1.1.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/datacube/v2.3.0/schema.json"
+    "https://stac-extensions.github.io/datacube/v2.3.0/schema.json",
+    "https://stac-extensions.github.io/dggs/v0.1.0/schema.json"
   ],
   "id": "datacube-dggs-123",
   "type": "Feature",
@@ -45,11 +46,13 @@
       "dggs": {
         "type": "dggs",
         "reference_system": "https://www.opengis.net/def/dggrs/OGC/1.0/HEALPix",
-        "resolution": 2,
+        "dggs:refinement_level": 8,
+        "dggs:indexing_scheme": "nested",
         "values": [
-          "C1-A",
-          "C1-B",
-          "C1-C"
+          "44360",
+          "44361",
+          "44362",
+          "44363"
         ]
       },
       "time": {
