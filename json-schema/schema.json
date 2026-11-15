@@ -248,6 +248,12 @@
             "type",
             "values"
           ]
+        },
+        {
+          "required": [
+            "type",
+            "definition"
+          ]
         }
       ],
       "not": {
@@ -273,6 +279,15 @@
         },
         "values": {
           "$ref": "#/definitions/values"
+        },
+        "size": {
+          "$ref": "#/definitions/size"
+        },
+        "definition": {
+          "$ref": "#/definitions/definition"
+        },
+        "variableType": {
+          "$ref": "#/definitions/variableType"
         },
         "step": {
           "$ref": "#/definitions/step"
@@ -316,6 +331,15 @@
         },
         "values": {
           "$ref": "#/definitions/values_numeric"
+        },
+        "size": {
+          "$ref": "#/definitions/size"
+        },
+        "definition": {
+          "$ref": "#/definitions/definition"
+        },
+        "variableType": {
+          "$ref": "#/definitions/variableType"
         },
         "step": {
           "$ref": "#/definitions/step"
@@ -362,6 +386,15 @@
         },
         "values": {
           "$ref": "#/definitions/values"
+        },
+        "size": {
+          "$ref": "#/definitions/size"
+        },
+        "definition": {
+          "$ref": "#/definitions/definition"
+        },
+        "variableType": {
+          "$ref": "#/definitions/variableType"
         },
         "step": {
           "$ref": "#/definitions/step"
@@ -426,6 +459,15 @@
             "type": "string"
           }
         },
+        "size": {
+          "$ref": "#/definitions/size"
+        },
+        "definition": {
+          "$ref": "#/definitions/definition"
+        },
+        "variableType": {
+          "$ref": "#/definitions/variableType"
+        },
         "geometry_types":  {
           "type": "array",
           "uniqueItems": true,
@@ -484,6 +526,15 @@
               "null"
             ]
           }
+        },
+        "size": {
+          "$ref": "#/definitions/size"
+        },
+        "definition": {
+          "$ref": "#/definitions/definition"
+        },
+        "variableType": {
+          "$ref": "#/definitions/variableType"
         },
         "step": {
           "type": [
@@ -668,6 +719,24 @@
     },
     "description": {
       "type": "string"
+    },
+    "size": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "definition": {
+      "type": "string",
+      "format": "uri"
+    },
+    "variableType": {
+      "type": "string",
+      "enum": [
+        "continuous",
+        "numericalOrdinal",
+        "numericalNominal",
+        "categoricalOrdinal",
+        "categoricalNominal"
+      ]
     }
   }
 }
