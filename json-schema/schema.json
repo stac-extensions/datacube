@@ -248,12 +248,6 @@
             "type",
             "values"
           ]
-        },
-        {
-          "required": [
-            "type",
-            "definition"
-          ]
         }
       ],
       "not": {
@@ -280,14 +274,8 @@
         "values": {
           "$ref": "#/definitions/values"
         },
-        "size": {
-          "$ref": "#/definitions/size"
-        },
-        "definition": {
-          "$ref": "#/definitions/definition"
-        },
-        "variableType": {
-          "$ref": "#/definitions/variableType"
+        "count": {
+          "$ref": "#/definitions/count"
         },
         "step": {
           "$ref": "#/definitions/step"
@@ -332,14 +320,8 @@
         "values": {
           "$ref": "#/definitions/values_numeric"
         },
-        "size": {
-          "$ref": "#/definitions/size"
-        },
-        "definition": {
-          "$ref": "#/definitions/definition"
-        },
-        "variableType": {
-          "$ref": "#/definitions/variableType"
+        "count": {
+          "$ref": "#/definitions/count"
         },
         "step": {
           "$ref": "#/definitions/step"
@@ -387,14 +369,8 @@
         "values": {
           "$ref": "#/definitions/values"
         },
-        "size": {
-          "$ref": "#/definitions/size"
-        },
-        "definition": {
-          "$ref": "#/definitions/definition"
-        },
-        "variableType": {
-          "$ref": "#/definitions/variableType"
+        "count": {
+          "$ref": "#/definitions/count"
         },
         "step": {
           "$ref": "#/definitions/step"
@@ -459,14 +435,8 @@
             "type": "string"
           }
         },
-        "size": {
-          "$ref": "#/definitions/size"
-        },
-        "definition": {
-          "$ref": "#/definitions/definition"
-        },
-        "variableType": {
-          "$ref": "#/definitions/variableType"
+        "count": {
+          "$ref": "#/definitions/count"
         },
         "geometry_types":  {
           "type": "array",
@@ -516,6 +486,9 @@
             "type": "string"
           }
         },
+        "count": {
+          "$ref": "#/definitions/count"
+        },
         "extent": {
           "type": "array",
           "minItems": 2,
@@ -526,15 +499,6 @@
               "null"
             ]
           }
-        },
-        "size": {
-          "$ref": "#/definitions/size"
-        },
-        "definition": {
-          "$ref": "#/definitions/definition"
-        },
-        "variableType": {
-          "$ref": "#/definitions/variableType"
         },
         "step": {
           "type": [
@@ -720,23 +684,9 @@
     "description": {
       "type": "string"
     },
-    "size": {
+    "count": {
       "type": "integer",
       "minimum": 0
-    },
-    "definition": {
-      "type": "string",
-      "format": "uri"
-    },
-    "variableType": {
-      "type": "string",
-      "enum": [
-        "continuous",
-        "numericalOrdinal",
-        "numericalNominal",
-        "categoricalOrdinal",
-        "categoricalNominal"
-      ]
     }
   }
 }

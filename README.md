@@ -13,7 +13,6 @@ It specifies datacube related metadata, especially their dimensions and potentia
 - Examples:
   - [Item example](examples/item.json): Shows the basic usage of the extension in a STAC Item
   - [Collection example](examples/collection.json): Shows the basic usage of the extension in a STAC Collection
-  - [Collection UAD example](examples/collection-uad.json): Uses `size`, `definition`, and `variableType` for irregular external dimensions
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
@@ -37,19 +36,15 @@ The keys of `cube:dimensions` and `cube:variables` should be unique together; a 
 ### Dimension Object
 
 A *Dimension Object* comes in different flavors, each of them is defined below. The fields define mostly very similar fields,
-but they differ slightly depending on their use case. All objects share `type`, `description`, `size`, `definition`, and `variableType`,
+but they differ slightly depending on their use case. All objects share the fields `type`, `description`, and `count` with the same definition,
 but `type` may be restricted to certain values. The definition of `axis` is shared between the spatial dimensions, but restricted to
 certain values, too. `extent`, `values` and `step` share the same definition, but differ in the supported data types (number or string)
 depending on the type of dimension. Whenever it's useful to specify these fields, the objects add the additional fields `reference_system`
 and `unit` with very similar definitions across the objects.
 
-The optional `size`, `definition`, and `variableType` fields support large or irregular external dimensions without embedding
-monolithic `values` arrays inline, aligned with the OGC API - Common Part 2 UAD (`dimension.yaml`) building block:
-
-- `size` (`integer >= 0`): Total number of coordinate members along the dimension. Useful when `values` is omitted due to cardinality.
-- `definition` (`string`, URI): External OGC API - Common Part 2 UAD dimension URI defining the full dimension grammar and `/items` members.
-- `variableType` (`string`): OGC API - Common Part 2 UAD scale enum:
-  `continuous`, `numericalOrdinal`, `numericalNominal`, `categoricalOrdinal`, or `categoricalNominal`.
+The optional `count` field (`integer >= 0`) specifies the total number of samples or members along the dimension. When `values` is provided,
+`count` SHOULD equal the length of `values`. When `extent` and `step` are provided without `values`, `count` explicitly states the exact sample count,
+avoiding floating-point rounding and boundary ambiguity.
 
 ### Horizontal Spatial Raster Dimension Object
 
@@ -62,9 +57,7 @@ A spatial raster dimension in one of the horizontal (x or y) directions.
 | description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number]      | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-element array. Open intervals with `null` are not allowed. |
 | values           | \[number]      | Optionally, an ordered list of all values.                   |
-| size             | integer        | Total number of members along the dimension (`>= 0`).        |
-| definition       | string         | URI of an external OGC Common Part 2 UAD dimension resource or vocabulary. |
-| variableType     | string         | UAD measurement scale (`continuous`, `numericalOrdinal`, `numericalNominal`, `categoricalOrdinal`, or `categoricalNominal`). |
+| count            | integer        | Total number of samples or members along the dimension (`>= 0`). |
 | step             | number\|null   | The space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string         | The unit of measurement for the values, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 | reference_system | string\|number\|object | The spatial reference system for the data and datacube metadata (`extent`, `values` and `step`), specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
@@ -80,9 +73,7 @@ A spatial dimension in vertical (z) direction.
 | description      | string           | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|null\]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-element array. Use `null` for open intervals. |
 | values           | \[number\|string\] | An ordered list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
-| size             | integer          | Total number of members along the dimension (`>= 0`).        |
-| definition       | string           | URI of an external OGC Common Part 2 UAD dimension resource or vocabulary. |
-| variableType     | string           | UAD measurement scale (`continuous`, `numericalOrdinal`, `numericalNominal`, `categoricalOrdinal`, or `categoricalNominal`). |
+| count            | integer          | Total number of samples or members along the dimension (`>= 0`). |
 | step             | number\|null     | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string           | The unit of measurement for the values, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 | reference_system | string\|number\|object | The spatial reference system for the data and datacube metadata (`extent`, `values` and `step`), specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
@@ -100,9 +91,7 @@ A temporal dimension based on the ISO 8601 standard. The temporal reference syst
 | description | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent     | \[string\|null] | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-element array. The dates and/or times must be strings compliant to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). `null` is allowed for open date ranges. |
 | values     | \[string]       | If the dimension consists of an ordered list of specific values they can be listed here. The dates and/or times must be strings compliant to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). |
-| size       | integer         | Total number of members along the dimension (`>= 0`).        |
-| definition | string          | URI of an external OGC Common Part 2 UAD dimension resource or vocabulary. |
-| variableType | string        | UAD measurement scale (`continuous`, `numericalOrdinal`, `numericalNominal`, `categoricalOrdinal`, or `categoricalNominal`). |
+| count      | integer         | Total number of samples or members along the dimension (`>= 0`). |
 | step       | string\|null    | The space between the temporal instances as [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations), e.g. `P1D`. Use `null` for irregularly spaced steps. |
 | unit       | string          | The unit of measurement for the values, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 
@@ -117,9 +106,7 @@ A vector dimension that defines a spatial dimension based on geometries.
 | description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | bbox             | \[number]      | **REQUIRED.** A single bounding box of the geometries as defined for [STAC Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#spatial-extent-object), but not nested. |
 | values           | \[string\]     | Optionally, a representation of the geometries. This could be a list of WKT strings or other identifiers. |
-| size             | integer        | Total number of geometries/members along the dimension (`>= 0`). |
-| definition       | string         | URI of an external OGC Common Part 2 UAD dimension resource or vocabulary. |
-| variableType     | string         | UAD measurement scale (`continuous`, `numericalOrdinal`, `numericalNominal`, `categoricalOrdinal`, or `categoricalNominal`). |
+| count            | integer        | Total number of geometries or members along the dimension (`>= 0`). |
 | geometry_types   | \[[GeoJSON Types](https://www.rfc-editor.org/rfc/rfc7946#section-1.4)] | A set of geometry types. If not present, mixed geometry types must be assumed. |
 | reference_system | string\|number\|object | The spatial reference system for the data and datacube metadata (`bbox` and `values`), specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
@@ -135,14 +122,12 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 | description      | string            | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|null]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-element array. Use `null` for open intervals. |
 | values           | \[number\|string] | An ordered list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
-| size             | integer           | Total number of members along the dimension (`>= 0`).        |
-| definition       | string            | URI of an external OGC Common Part 2 UAD dimension resource or vocabulary. |
-| variableType     | string            | UAD measurement scale (`continuous`, `numericalOrdinal`, `numericalNominal`, `categoricalOrdinal`, or `categoricalNominal`). |
+| count            | integer           | Total number of samples or members along the dimension (`>= 0`). |
 | step             | number\|null      | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string            | The unit of measurement for the values, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 | reference_system | string            | The reference system for the data and datacube metadata (`extent`, `values` and `step`). |
 
-An Additional Dimension Object MUST specify an `extent`, `values`, or `definition`. It MAY specify multiple.
+An Additional Dimension Object MUST specify an `extent` or `values`. It MAY specify both.
 
 Note on "Additional Dimension" with type `temporal`:
 You can distinguish the "Temporal Dimension" from an "Additional Dimension" by checking whether the extent exists and contains strings.
