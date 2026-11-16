@@ -42,8 +42,8 @@ certain values, too. `extent`, `values` and `step` share the same definition, bu
 depending on the type of dimension. Whenever it's useful to specify these fields, the objects add the additional fields `reference_system`
 and `unit` with very similar definitions across the objects.
 
-The optional `count` field (`integer >= 0`) specifies the total number of samples or members along the dimension. When `values` is provided,
-`count` SHOULD equal the length of `values`. When `extent` and `step` are provided without `values`, `count` explicitly states the exact sample count,
+The optional `count` field (`integer >= 0`) specifies the total number of members along the dimension. When `values` is provided,
+`count` SHOULD equal the length of `values`. When `extent` and `step` are provided without `values`, `count` explicitly states the exact member count,
 avoiding floating-point rounding and boundary ambiguity.
 
 ### Horizontal Spatial Raster Dimension Object
@@ -57,7 +57,7 @@ A spatial raster dimension in one of the horizontal (x or y) directions.
 | description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number]      | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-element array. Open intervals with `null` are not allowed. |
 | values           | \[number]      | Optionally, an ordered list of all values.                   |
-| count            | integer        | Total number of samples or members along the dimension (`>= 0`). |
+| count            | integer        | Total number of members along the dimension (`>= 0`). |
 | step             | number\|null   | The space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string         | The unit of measurement for the values, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 | reference_system | string\|number\|object | The spatial reference system for the data and datacube metadata (`extent`, `values` and `step`), specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
@@ -73,7 +73,7 @@ A spatial dimension in vertical (z) direction.
 | description      | string           | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|null\]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-element array. Use `null` for open intervals. |
 | values           | \[number\|string\] | An ordered list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
-| count            | integer          | Total number of samples or members along the dimension (`>= 0`). |
+| count            | integer          | Total number of members along the dimension (`>= 0`). |
 | step             | number\|null     | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string           | The unit of measurement for the values, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 | reference_system | string\|number\|object | The spatial reference system for the data and datacube metadata (`extent`, `values` and `step`), specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
@@ -91,7 +91,7 @@ A temporal dimension based on the ISO 8601 standard. The temporal reference syst
 | description | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent     | \[string\|null] | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-element array. The dates and/or times must be strings compliant to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). `null` is allowed for open date ranges. |
 | values     | \[string]       | If the dimension consists of an ordered list of specific values they can be listed here. The dates and/or times must be strings compliant to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). |
-| count      | integer         | Total number of samples or members along the dimension (`>= 0`). |
+| count      | integer         | Total number of members along the dimension (`>= 0`). |
 | step       | string\|null    | The space between the temporal instances as [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations), e.g. `P1D`. Use `null` for irregularly spaced steps. |
 | unit       | string          | The unit of measurement for the values, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 
@@ -122,7 +122,7 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 | description      | string            | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|null]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-element array. Use `null` for open intervals. |
 | values           | \[number\|string] | An ordered list of all values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
-| count            | integer           | Total number of samples or members along the dimension (`>= 0`). |
+| count            | integer           | Total number of members along the dimension (`>= 0`). |
 | step             | number\|null      | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string            | The unit of measurement for the values, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 | reference_system | string            | The reference system for the data and datacube metadata (`extent`, `values` and `step`). |
