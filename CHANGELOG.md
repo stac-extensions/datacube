@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Aligned description of the `unit` field with the common metadata specificaion (UCUM preferred)
+- Consistent terminology: Dimension labels vs. data values, added a terminology section incl. a mapping to related standards [#43](https://github.com/stac-extensions/datacube/issues/43)
 
 ## [v2.3.0] - 2025-06-18
 
