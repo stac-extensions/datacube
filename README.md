@@ -45,6 +45,9 @@ and `unit` with very similar definitions across the objects.
 The optional `count` field specifies the total number of members along the dimension.
 `count` states the exact member count.
 When `values` and `count` are provided, `count` MUST equal the length of `values`.
+`count` is especially useful if `values` is not provided, e.g. for large or irregularly spaced dimensions.
+It can't always be derived reliably from `extent` and `step` as it depends on whether the values represent points or intervals
+(e.g. an extent of `[0, 10]` with a step of `1` can have 10 or 11 members).
 
 ### Horizontal Spatial Raster Dimension Object
 

@@ -68,6 +68,7 @@
           1000
         ],
         "step": 100,
+        "count": 11,
         "unit": "Pa"
       },
       "metered_levels": {
