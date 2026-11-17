@@ -136,14 +136,15 @@ A spatial dimension based on a Discrete Global Grid System (DGGS).
 | type             | string         | **REQUIRED.** Type of the dimension, always `dggs`. |
 | description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\]     | The spatial extent of the DGGS zones as a GeoJSON-style bbox: `[west, south, east, north]` or `[west, south, minz, east, north, maxz]`. |
-| values           | \[string\]     | An ordered list of DGGS zone identifiers. Useful when enumerating a known set of zones (for example, a tile index or explicit zone subset). |
+| values           | \[string\]     | An ordered list of dimension labels, i.e. DGGS zone identifiers. Useful when enumerating a known set of zones (for example, a tile index or explicit zone subset). |
+| count            | integer        | Total number of dimension labels (i.e. zones) along the dimension (`>= 0`). |
 | reference_system | string         | **REQUIRED.** Identifier of the DGGS reference system (DGGRS), preferably a URI. |
 
 It is RECOMMENDED that a Spatial DGGS Dimension Object specifies at least one of `extent` or `values`
 unless it would be equivalent to the bbox/extent in the containing Item/Collection.
 
 For DGGS dimensions, `reference_system` identifies the DGGS reference system (DGGRS), not a coordinate reference system (CRS).
-Values such as `https://www.opengis.net/def/dggrs/OGC/1.0/HEALPix` from the
+Identifiers such as `https://www.opengis.net/def/dggrs/OGC/1.0/HEALPix` from the
 [OGC DGGRS Register](https://defs.opengis.net/prez/catalogs/ogc-cat:register/col/def:dggrs) are valid examples.
 Additional DGGS metadata, e.g. the refinement level (`dggs:refinement_level`) or the indexing scheme of the zone identifiers,
 can be provided through the [DGGS Extension](https://github.com/stac-extensions/dggs).
