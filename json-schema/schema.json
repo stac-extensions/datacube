@@ -505,9 +505,12 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "description": "Zone identifier",
+            "description": "Dimension label (DGGS zone identifier)",
             "type": "string"
           }
+        },
+        "count": {
+          "$ref": "#/definitions/count"
         },
         "reference_system": {
           "type": "string",
