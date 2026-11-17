@@ -78,7 +78,7 @@
   },
   "assets": {
     "data": {
-      "href": "http://cool-sat.com/catalog/datacube-dggs-123/data.zarr",
+      "href": "http://openeo.example/catalog/example-dggs-123/data.zarr",
       "type": "application/zarr",
       "title": "DGGS Data cube"
     }
@@ -86,7 +86,7 @@
   "links": [
     {
       "rel": "self",
-      "href": "http://cool-sat.com/catalog/datacube-dggs-123/item.json"
+      "href": "http://openeo.example/catalog/example-dggs-123/item.json"
     }
   ]
 }
