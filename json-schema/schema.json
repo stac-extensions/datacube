@@ -274,6 +274,9 @@
         "values": {
           "$ref": "#/definitions/values"
         },
+        "count": {
+          "$ref": "#/definitions/count"
+        },
         "step": {
           "$ref": "#/definitions/step"
         },
@@ -316,6 +319,9 @@
         },
         "values": {
           "$ref": "#/definitions/values_numeric"
+        },
+        "count": {
+          "$ref": "#/definitions/count"
         },
         "step": {
           "$ref": "#/definitions/step"
@@ -362,6 +368,9 @@
         },
         "values": {
           "$ref": "#/definitions/values"
+        },
+        "count": {
+          "$ref": "#/definitions/count"
         },
         "step": {
           "$ref": "#/definitions/step"
@@ -426,6 +435,9 @@
             "type": "string"
           }
         },
+        "count": {
+          "$ref": "#/definitions/count"
+        },
         "geometry_types":  {
           "type": "array",
           "uniqueItems": true,
@@ -473,6 +485,9 @@
           "items": {
             "type": "string"
           }
+        },
+        "count": {
+          "$ref": "#/definitions/count"
         },
         "extent": {
           "type": "array",
@@ -668,6 +683,10 @@
     },
     "description": {
       "type": "string"
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0
     }
   }
 }
