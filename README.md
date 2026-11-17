@@ -32,20 +32,7 @@ This document uses the following terms:
 
 Please note that the field `values` contains dimension labels in Dimension Objects, but data values in Variable Objects.
 
-### Mapping to other terminologies
-
-The following table maps the terms to related standards and tools.
-The concepts are similar, but don't always match exactly.
-
-| This extension      | [openEO](https://openeo.org/documentation/1.0/datacubes.html) | [OGC CIS 1.1](https://docs.ogc.org/is/09-146r8/09-146r8.html) / ISO 19123 | [CF Conventions](https://cfconventions.org/) | [xarray](https://docs.xarray.dev/en/stable/user-guide/terminology.html) | OLAP         |
-| ------------------- | --------------------- | ------------------------------ | ------------------- | ---------------------- | ------------ |
-| Dimension           | dimension             | axis                           | dimension           | dimension              | dimension    |
-| Dimension label     | dimension label       | coordinate                     | coordinate value    | coordinate label       | member       |
-| Cell                | -                     | grid point / grid cell         | cell                | element                | cell         |
-| Variable            | label of a bands dimension | range component           | data variable       | data variable          | measure      |
-| Data value          | value                 | range value                    | data value          | value (`.values`)      | cell value   |
-| `step`              | resolution            | resolution                     | -                   | -                      | -            |
-| `count`             | -                     | -                              | dimension length    | size (`.sizes`)        | -            |
+For a mapping of these terms to openEO, OGC CIS, CF Conventions, xarray and OLAP, see [Mapping to other terminologies](#mapping-to-other-terminologies).
 
 ## Fields
 
@@ -189,8 +176,28 @@ A *Variable Object* defines a variable (or a multi-dimensional array). The varia
   For example, the dimension labels of the spatial dimensions might be provided in a projected coordinate reference system, but
   the datacube could have a variable `lon` with dimensions `(y, x)`, giving the longitude for each cell.
 
+One-dimensional variables that only contain the dimension labels of a dimension (e.g. `time(time)`, called coordinate variables in CF)
+are described by the corresponding Dimension Object and SHOULD NOT be listed in `cube:variables`.
+
 See the [CF Conventions](http://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#terminology)
 for more on auxiliary coordinates.
+
+## Mapping to other terminologies
+
+The following table maps the terms to related standards and tools.
+The concepts are similar, but don't always match exactly.
+
+| This extension      | [openEO](https://openeo.org/documentation/1.0/datacubes.html) | [OGC CIS 1.1](https://docs.ogc.org/is/09-146r8/09-146r8.html) / ISO 19123 | [CF Conventions](https://cfconventions.org/) | [xarray](https://docs.xarray.dev/en/stable/user-guide/terminology.html) | OLAP         |
+| ------------------- | --------------------- | ------------------------------ | ------------------- | ---------------------- | ------------ |
+| Dimension           | dimension             | axis                           | dimension           | dimension              | dimension    |
+| Dimension label     | dimension label       | coordinate                     | coordinate value    | coordinate label       | member       |
+| Cell                | -                     | grid point / grid cell         | cell                | element                | cell         |
+| Dimension labels of a dimension | dimension labels | coordinates of an axis | coordinate variable | dimension coordinate | members of a dimension |
+| Variable (`data`)   | label of a bands dimension | range component           | data variable       | data variable          | measure      |
+| Variable (`auxiliary`) | -                  | -                              | auxiliary coordinate variable | non-dimension coordinate | -  |
+| Data value          | value                 | range value                    | data value          | value (`.values`)      | cell value   |
+| `step`              | resolution            | resolution                     | -                   | -                      | -            |
+| `count`             | -                     | -                              | dimension length    | size (`.sizes`)        | -            |
 
 ## Contributing
 
