@@ -42,9 +42,9 @@ certain values, too. `extent`, `values` and `step` share the same definition, bu
 depending on the type of dimension. Whenever it's useful to specify these fields, the objects add the additional fields `reference_system`
 and `unit` with very similar definitions across the objects.
 
-The optional `count` field (`integer >= 0`) specifies the total number of members along the dimension. When `values` is provided,
-`count` SHOULD equal the length of `values`. When `extent` and `step` are provided without `values`, `count` explicitly states the exact member count,
-avoiding floating-point rounding and boundary ambiguity.
+The optional `count` field specifies the total number of members along the dimension.
+`count` states the exact member count.
+When `values` and `count` are provided, `count` MUST equal the length of `values`.
 
 ### Horizontal Spatial Raster Dimension Object
 
