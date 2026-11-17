@@ -123,6 +123,10 @@ A spatial dimension based on a Discrete Global Grid System (DGGS).
 It is RECOMMENDED that a Spatial DGGS Dimension Object specifies at least one of `extent` or `values`
 unless it would be equivalent to the bbox/extent in the containing Item/Collection.
 
+Instead of listing a large number of zones in `values`, the parent zone and its level can be provided through the DGGS Extension
+(`dggs:zone_id` and `dggs:zone_level`) together with `dggs:refinement_level` so that clients can compute the zones,
+similar to the zone query in OGC API - DGGS.
+
 For DGGS dimensions, `reference_system` identifies the DGGS reference system (DGGRS), not a coordinate reference system (CRS).
 Identifiers such as `https://www.opengis.net/def/dggrs/OGC/1.0/HEALPix` from the
 [OGC DGGRS Register](https://defs.opengis.net/prez/catalogs/ogc-cat:register/col/def:dggrs) are valid examples.
