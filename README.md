@@ -66,6 +66,9 @@ When `values` and `count` are provided, `count` MUST equal the length of `values
 It can't always be derived reliably from `extent` and `step` as it depends on whether the dimension labels represent points or intervals
 (e.g. an extent of `[0, 10]` with a step of `1` can have 10 or 11 dimension labels).
 
+`values` is meant for dimensions with a small number of dimension labels, e.g. bands.
+For large dimensions, it is RECOMMENDED to provide `extent` (and `step` and `count` if applicable) instead of listing all dimension labels.
+
 ### Horizontal Spatial Raster Dimension Object
 
 A spatial raster dimension in one of the horizontal (x or y) directions.
