@@ -72,8 +72,8 @@ explicitly inclusive of the bounds and use a `count` that aligns with the dimens
 For example, `extent: [0, 10], step: 1` SHOULD indicate `count: 11` when both `0` and `10`
 are intended to be dimension labels, matching exactly the limit values respecting the `step`.
 If instead `0` and `10` had to be exclusive minimum/maximum boundaries, `extent: [1, 9], step: 1, count: 9` could be used instead.
-The boundaries are ambiguous only when `count` is omitted (i.e. `extent: [0, 10], step: 1` without `count` can either included them or not),
-and `count` MUST NOT be inferred from the `values` length.
+The boundaries are ambiguous only when `count` is omitted (i.e. `extent: [0, 10], step: 1` without `count` can either include the bounds or not).
+Therefore, the `count` MUST NOT be inferred from the `values` length when it is not provided as it can represent either inclusive or exclusive `extent` bounds.
 
 `values` is meant for dimensions with a small number of dimension labels, e.g. bands.
 For large dimensions, it is RECOMMENDED to provide `extent` (and `step` and `count` if applicable) instead of listing all dimension labels.
