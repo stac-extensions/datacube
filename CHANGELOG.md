@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Consistent terminology: Dimension labels vs. data values, added a terminology section incl. a mapping to related standards [#43](https://github.com/stac-extensions/datacube/issues/43)
 - Clarified that coordinate variables of dimensions should not be listed in `cube:variables` [#33](https://github.com/stac-extensions/datacube/issues/33)
 - Recommend `extent` instead of `values` for dimensions with a large number of dimension labels
+- Clarified that `extent` and `values` of Variable Objects exclude the `nodata` value
 
 ## [v2.3.0] - 2025-06-18
 

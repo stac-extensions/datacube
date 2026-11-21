@@ -29,6 +29,7 @@ This document uses the following terms:
 - **Variable**: A named multi-dimensional array of the datacube, described by a [Variable Object](#variable-object).
 - **Data value** (short: *value*): The content of a cell for a variable.
   Data values are listed in `values` and bounded by `extent` of a Variable Object. Cells without data contain the `nodata` value.
+  `values` and `extent` only describe valid data values, i.e. they exclude the `nodata` value.
 
 Please note that the field `values` contains dimension labels in Dimension Objects, but data values in Variable Objects.
 
