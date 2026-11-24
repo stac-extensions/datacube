@@ -26,6 +26,7 @@ This document uses the following terms:
   e.g. a timestamp, a band name, a coordinate, a geometry or a zone identifier.
   Dimension labels are listed in `values`, bounded by `extent`, spaced by `step` and counted by `count` of a Dimension Object.
 - **Cell**: A single element of the datacube, addressed by one dimension label per dimension.
+  A cell holds one data value per variable.
 - **Variable**: A named multi-dimensional array of the datacube, described by a [Variable Object](#variable-object).
 - **Data value** (short: *value*): The content of a cell for a variable.
   Data values are listed in `values` and bounded by `extent` of a Variable Object. Cells without data contain the `nodata` value.
