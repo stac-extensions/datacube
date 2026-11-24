@@ -85,10 +85,10 @@
   "cube:variables": {
     "lat": {
       "type": "auxiliary",
-      "extent": [
-        17.960035,
-        23.512327
-      ],
+      "statistics": {
+        "minimum": 17.960035,
+        "maximum": 23.512327
+      },
       "description": "latitude coordinate",
       "unit": "degrees_north",
       "dimensions": [
@@ -98,10 +98,10 @@
     },
     "lon": {
       "type": "auxiliary",
-      "extent": [
-        -160.29884,
-        -154.77806
-      ],
+      "statistics": {
+        "minimum": -160.29884,
+        "maximum": -154.77806
+      },
       "description": "longitude coordinate",
       "unit": "degrees_east",
       "dimensions": [
@@ -112,10 +112,9 @@
     "prcp": {
       "type": "data",
       "description": "The total accumulated precipitation over the monthly period of the daily total precipitation. Sum of all forms of precipitation converted to a water-equivalent depth.",
-      "extent": [
-        0,
-        null
-      ],
+      "statistics": {
+        "minimum": 0
+      },
       "unit": "mm",
       "dimensions": [
         "time",
@@ -126,10 +125,9 @@
     "swe": {
       "type": "data",
       "description": "The average of the daily snow water equivalent (the amount of water contained within the snowpack) in kilograms per square meter over the monthly period.",
-      "extent": [
-        0,
-        null
-      ],
+      "statistics": {
+        "minimum": 0
+      },
       "unit": "kg/m2",
       "dimensions": [
         "time",

@@ -29,10 +29,7 @@ This document uses the following terms:
   A cell holds one data value per variable.
 - **Variable**: A named multi-dimensional array of the datacube, described by a [Variable Object](#variable-object).
 - **Data value** (short: *value*): The content of a cell for a variable.
-  Data values are listed in `values` and bounded by `extent` of a Variable Object. Cells without data contain the `nodata` value.
-  `values` and `extent` only describe valid data values, i.e. they exclude the `nodata` value.
-
-Please note that the field `values` contains dimension labels in Dimension Objects, but data values in Variable Objects.
+  Data values are described by `statistics` of a Variable Object. Cells without data contain the `nodata` value.
 
 For a mapping of these terms to openEO, OGC CIS, CF Conventions, xarray and OLAP, see [Mapping to other terminologies](#mapping-to-other-terminologies).
 
@@ -188,11 +185,18 @@ A *Variable Object* defines a variable (or a multi-dimensional array). The varia
 | dimensions       | \[string]                | **REQUIRED.** The dimensions of the variable. This should refer to keys in the ``cube:dimensions`` object or be an empty list if the variable has no dimensions. |
 | type             | string                   | **REQUIRED.** Type of the variable, either `data` or `auxiliary`. | 
 | description      | string                   | Detailed multi-line description to explain the variable. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| extent           | \[number\|string\|null\] | If the data values are [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale), the extent (lower and upper bounds) of the data values as two-element array. Use `null` for open intervals. |
-| values           | \[number\|string]        | An (ordered) list of all data values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) data values. |
 | unit             | string                   | The unit of measurement for the data values, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 | nodata           | number\|string           | Data value used to identify cells without data, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#no-data) for more details. |
 | data_type        | string                   | The data type of the data values, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#data-types) for more details. |
+| statistics       | [Statistics Object](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#statistics-object) | Statistics of the data values, e.g. the range of the data values (`minimum` and `maximum`), see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#statistics-object) for more details. |
+| extent           | \[number\|string\|null\] | **DEPRECATED** in favor of `statistics`. If the data values are [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale), the extent (lower and upper bounds) of the data values as two-element array, excluding `nodata`. Use `null` for open intervals. |
+| values           | \[number\|string]        | **DEPRECATED** in favor of `statistics` and the [classification extension](https://github.com/stac-extensions/classification/). An (ordered) list of all data values, excluding `nodata`. |
+
+> [!NOTE]
+> `extent` and `values` in Variable Objects are deprecated and will be removed in the next major release (v3.0.0).
+> Use `minimum` and `maximum` in `statistics` instead of `extent`.
+> For lists of nominal data values (e.g. classes), use `classification:classes` from the
+> [classification extension](https://github.com/stac-extensions/classification/) instead of `values`.
 
 **type**: The Variable `type` indicates whether what kind of variable is being described. It has two allowed values:
 

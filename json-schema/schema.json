@@ -548,9 +548,15 @@
           }
         },
         "values": {
-          "$ref": "#/definitions/values"
+          "deprecated": true,
+          "allOf": [
+            {
+              "$ref": "#/definitions/values"
+            }
+          ]
         },
         "extent": {
+          "deprecated": true,
           "type": "array",
           "minItems": 2,
           "maxItems": 2,
@@ -570,6 +576,9 @@
         },
         "data_type": {
           "$ref": "#/definitions/data_type"
+        },
+        "statistics": {
+          "$ref": "#/definitions/statistics"
         }
       }
     },
@@ -675,6 +684,34 @@
           ]
         }
       ]
+    },
+    "statistics": {
+      "$comment": "The schema is from common metadata, see https://github.com/radiantearth/stac-spec/blob/v1.1.0/item-spec/json-schema/data-values.json",
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "minimum": {
+          "type": "number"
+        },
+        "maximum": {
+          "type": "number"
+        },
+        "mean": {
+          "type": "number"
+        },
+        "stddev": {
+          "type": "number"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "valid_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
     },
     "reference_system_spatial": {
       "oneOf": [
