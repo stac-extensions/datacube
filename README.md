@@ -98,7 +98,7 @@ A spatial raster dimension in one of the horizontal (x or y) directions.
 | count            | integer        | Total number of dimension labels along the dimension (`>= 0`). |
 | step             | number\|null   | The space between consecutive dimension labels. Use `null` for irregularly spaced dimension labels. |
 | sampling         | string         | Whether the dimension labels represent cells (`area`) or points (`point`), see [Dimension Object](#dimension-object). |
-| unit             | string         | The unit of measurement for the dimension labels, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
+| unit             | string         | The unit of measurement for the dimension labels, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#units) for more details. |
 | reference_system | string\|number\|object | The spatial reference system for the data and the dimension labels (`extent`, `values` and `step`), specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
 ### Vertical Spatial Dimension Object
@@ -110,12 +110,12 @@ A spatial dimension in vertical (z) direction.
 | type             | string           | **REQUIRED.** Type of the dimension, always `spatial`.       |
 | axis             | string           | **REQUIRED.** Axis of the spatial dimension, always `z`.     |
 | description      | string           | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| extent           | \[number\|null\]   | If the dimension labels are [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale), the extent (lower and upper bounds) of the dimension labels as two-element array. Use `null` for open intervals. |
-| values           | \[number\|string\] | An ordered list of all dimension labels, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) dimension labels. |
+| extent           | \[number\|null]    | If the dimension labels are [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale), the extent (lower and upper bounds) of the dimension labels as two-element array. Use `null` for open intervals. |
+| values           | \[number\|string]  | An ordered list of all dimension labels, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) dimension labels. |
 | count            | integer          | Total number of dimension labels along the dimension (`>= 0`). |
 | step             | number\|null     | If the dimension labels are [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between consecutive dimension labels. Use `null` for irregularly spaced dimension labels. |
 | sampling         | string           | Whether the dimension labels represent cells (`area`) or points (`point`), see [Dimension Object](#dimension-object). |
-| unit             | string           | The unit of measurement for the dimension labels, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
+| unit             | string           | The unit of measurement for the dimension labels, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#units) for more details. |
 | reference_system | string\|number\|object | The spatial reference system for the data and the dimension labels (`extent`, `values` and `step`), specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
 A Vertical Spatial Dimension Object MUST specify an `extent` or `values`. It MAY specify both.
@@ -134,7 +134,7 @@ A temporal dimension based on the ISO 8601 standard. The temporal reference syst
 | count      | integer         | Total number of dimension labels along the dimension (`>= 0`). |
 | step       | string\|null    | The space between consecutive dimension labels as [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations), e.g. `P1D`. Use `null` for irregularly spaced dimension labels. |
 | sampling   | string          | Whether the dimension labels represent cells (`area`) or points (`point`), see [Dimension Object](#dimension-object). |
-| unit       | string          | The unit of measurement for the dimension labels, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
+| unit       | string          | The unit of measurement for the dimension labels, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#units) for more details. |
 
 ### Spatial Vector Dimension Object
 
@@ -146,7 +146,7 @@ A vector dimension that defines a spatial dimension based on geometries.
 | axes             | \[string]      | Axes of the vector dimension as an ordered set of `x`, `y` and `z`. Defaults to `x` and `y`. |
 | description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | bbox             | \[number]      | **REQUIRED.** A single bounding box of the geometries as defined for [STAC Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#spatial-extent-object), but not nested. |
-| values           | \[string\]     | Optionally, an ordered list of dimension labels representing the geometries. This could be a list of WKT strings or other identifiers. |
+| values           | \[string]      | Optionally, an ordered list of dimension labels representing the geometries. This could be a list of WKT strings or other identifiers. |
 | count            | integer        | Total number of dimension labels (i.e. geometries) along the dimension (`>= 0`). |
 | geometry_types   | \[[GeoJSON Types](https://www.rfc-editor.org/rfc/rfc7946#section-1.4)] | A set of geometry types. If not present, mixed geometry types must be assumed. |
 | reference_system | string\|number\|object | The spatial reference system for the data, the `bbox` and the dimension labels (`values`), specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
@@ -166,7 +166,7 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 | count            | integer           | Total number of dimension labels along the dimension (`>= 0`). |
 | step             | number\|null      | If the dimension labels are [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between consecutive dimension labels. Use `null` for irregularly spaced dimension labels. |
 | sampling         | string            | Whether the dimension labels represent cells (`area`) or points (`point`), see [Dimension Object](#dimension-object). |
-| unit             | string            | The unit of measurement for the dimension labels, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
+| unit             | string            | The unit of measurement for the dimension labels, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#units) for more details. |
 | reference_system | string            | The reference system for the data and the dimension labels (`extent`, `values` and `step`). |
 
 An Additional Dimension Object MUST specify an `extent` or `values`. It MAY specify both.
@@ -182,15 +182,23 @@ A *Variable Object* defines a variable (or a multi-dimensional array). The varia
 
 | Field Name       | Type                     | Description |
 | ---------------- | -------------------------| ----------- |
-| dimensions       | \[string]                | **REQUIRED.** The dimensions of the variable. This should refer to keys in the ``cube:dimensions`` object or be an empty list if the variable has no dimensions. |
-| type             | string                   | **REQUIRED.** Type of the variable, either `data` or `auxiliary`. | 
+| dimensions       | \[string]                | **REQUIRED.** The dimensions of the variable. This should refer to keys in the `cube:dimensions` object or be an empty list if the variable has no dimensions. |
+| type             | string                   | **REQUIRED.** Type of the variable, either `data` or `auxiliary`. |
 | description      | string                   | Detailed multi-line description to explain the variable. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| unit             | string                   | The unit of measurement for the data values, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
-| nodata           | number\|string           | Data value used to identify cells without data, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#no-data) for more details. |
-| data_type        | string                   | The data type of the data values, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#data-types) for more details. |
-| statistics       | [Statistics Object](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#statistics-object) | Statistics of the data values, e.g. the range of the data values (`minimum` and `maximum`), see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#statistics-object) for more details. |
-| extent           | \[number\|string\|null\] | **DEPRECATED** in favor of `statistics`. If the data values are [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale), the extent (lower and upper bounds) of the data values as two-element array, excluding `nodata`. Use `null` for open intervals. |
+| unit             | string                   | The unit of measurement for the data values, see [common metadata](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#units) for more details. |
+| extent           | \[number\|string\|null]  | **DEPRECATED** in favor of `statistics`. If the data values are [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale), the extent (lower and upper bounds) of the data values as two-element array, excluding `nodata`. Use `null` for open intervals. |
 | values           | \[number\|string]        | **DEPRECATED** in favor of `statistics` and the [classification extension](https://github.com/stac-extensions/classification/). An (ordered) list of all data values, excluding `nodata`. |
+
+The Variable Object can contain additional fields from common metadata and from extensions, for example:
+
+- the [data value fields](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#data-values)
+  from common metadata: `nodata`, `data_type`, `statistics` and `unit`,
+- `cf:standard_name` and other fields from the [CF extension](https://github.com/stac-extensions/cf),
+- `classification:classes` from the [classification extension](https://github.com/stac-extensions/classification/), or
+- `themes` from the [Themes extension](https://github.com/stac-extensions/themes) to reference concepts in other vocabularies,
+  e.g. the [ECMWF parameter database](https://codes.ecmwf.int/grib/param-db/).
+
+The key of a variable in `cube:variables` SHOULD be the name that is used to access the variable in the data.
 
 > [!NOTE]
 > `extent` and `values` in Variable Objects are deprecated and will be removed in the next major release (v3.0.0).
