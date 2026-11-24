@@ -201,7 +201,7 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 
 | Field Name       | Type              | Description                                                  |
 | ---------------- | ----------------- | ------------------------------------------------------------ |
-| type             | string            | **REQUIRED.** Custom type of the dimension, never `spatial` or `geometry`. |
+| type             | string            | **REQUIRED.** Custom type of the dimension, never `spatial`, `geometry` or `dggs`. |
 | description      | string            | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|null]   | If the dimension labels are [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale), the extent (lower and upper bounds) of the dimension labels as two-element array. Use `null` for open intervals. |
 | values           | \[number\|string] | An ordered list of all dimension labels, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) dimension labels. |
