@@ -19,6 +19,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Recommend `extent` instead of `values` for dimensions with a large number of dimension labels
 - Clarified that `extent` and `values` of Variable Objects exclude the `nodata` value
 
+### Fixed
+
+- JSON Schema: Validate the data types in `values` of Variable Objects [#45](https://github.com/stac-extensions/datacube/issues/45)
+- JSON Schema: Validate and require the `type` field of Variable Objects instead of `variable_type`
+
 ## [v2.3.0] - 2025-06-18
 
 ### Added
