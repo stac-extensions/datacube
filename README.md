@@ -200,7 +200,7 @@ The Variable Object can contain additional fields from common metadata and from 
 
 The key of a variable in `cube:variables` SHOULD be the name that is used to access the variable in the data.
 
-> [!NOTE]
+> [!WARNING]
 > `extent` and `values` in Variable Objects are deprecated and will be removed in the next major release (v3.0.0).
 > Use `minimum` and `maximum` in `statistics` instead of `extent`.
 > For lists of nominal data values (e.g. classes), use `classification:classes` from the
