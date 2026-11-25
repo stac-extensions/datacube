@@ -1,9 +1,10 @@
 {
   "stac_version": "1.1.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/datacube/v2.3.0/schema.json"
+    "https://stac-extensions.github.io/datacube/v2.3.0/schema.json",
+    "https://stac-extensions.github.io/cf/v1.0.0/schema.json"
   ],
-  "id": "datacube-123",
+  "id": "weather-forecast-2016-05-03",
   "type": "Feature",
   "geometry": {
     "type": "Polygon",
@@ -39,12 +40,16 @@
     37.613537207
   ],
   "properties": {
-    "title": "Multi-dimensional data cube 123 in a STAC Item.",
-    "datetime": "2016-05-03T13:21:30.040Z",
+    "title": "Hourly weather forecast for the San Francisco Bay Area",
+    "description": "Ensemble forecast of air temperature and wind speed on pressure levels.",
+    "datetime": null,
+    "start_datetime": "2016-05-03T00:00:00Z",
+    "end_datetime": "2016-05-03T23:00:00Z",
     "cube:dimensions": {
       "x": {
         "type": "spatial",
         "axis": "x",
+        "description": "Longitude",
         "extent": [
           -122.59750209,
           -122.2880486
@@ -54,91 +59,157 @@
       "y": {
         "type": "spatial",
         "axis": "y",
+        "description": "Latitude",
         "extent": [
           37.48803556,
           37.613537207
         ],
         "reference_system": 4326
       },
-      "pressure_levels": {
+      "pressure": {
         "type": "spatial",
         "axis": "z",
-        "extent": [
-          0,
-          1000
-        ],
-        "step": 100,
-        "count": 11,
-        "sampling": "point",
-        "unit": "Pa"
-      },
-      "metered_levels": {
-        "type": "spatial",
-        "axis": "z",
+        "description": "Pressure levels",
         "values": [
-          0,
-          10,
-          25,
-          50,
-          100,
-          1000
+          1000,
+          850,
+          700,
+          500,
+          250
         ],
-        "unit": "m"
+        "unit": "hPa"
       },
       "time": {
         "type": "temporal",
-        "values": [
-          "2016-05-03T13:21:30.040Z"
-        ]
+        "description": "Forecast time",
+        "extent": [
+          "2016-05-03T00:00:00Z",
+          "2016-05-03T23:00:00Z"
+        ],
+        "step": "PT1H",
+        "count": 24,
+        "sampling": "point"
       },
-      "spectral": {
-        "type": "bands",
-        "values": [
-          "red",
-          "green",
-          "blue"
-        ]
+      "member": {
+        "type": "ensemble",
+        "description": "Ensemble members",
+        "extent": [
+          0,
+          9
+        ],
+        "step": 1,
+        "count": 10
       }
     },
     "cube:variables": {
-      "temp": {
-        "dimensions": [
-          "time",
-          "y",
-          "x",
-          "pressure_levels"
-        ],
+      "temperature": {
         "type": "data",
+        "dimensions": [
+          "member",
+          "time",
+          "pressure",
+          "y",
+          "x"
+        ],
+        "description": "Air temperature",
+        "cf:standard_name": "air_temperature",
+        "unit": "K",
+        "data_type": "float32",
         "nodata": "nan",
-        "data_type": "float32"
+        "statistics": {
+          "minimum": 218.4,
+          "maximum": 296.1
+        },
+        "themes": [
+          {
+            "scheme": "https://cfconventions.org/Data/cf-conventions/cf-conventions-1.13/cf-conventions.html",
+            "concepts": [
+              {
+                "id": "air_temperature",
+                "title": "Air temperature",
+                "url": "https://cfconventions.org/Data/cf-standard-names/95/build/cf-standard-name-table.html#air_temperature"
+              }
+            ]
+          }
+        ]
       },
-      "color": {
-        "dimensions": [],
+      "wind_speed": {
+        "type": "data",
+        "dimensions": [
+          "member",
+          "time",
+          "pressure",
+          "y",
+          "x"
+        ],
+        "description": "Wind speed",
+        "cf:standard_name": "wind_speed",
+        "unit": "m s-1",
+        "data_type": "float32",
+        "nodata": "nan",
+        "statistics": {
+          "minimum": 0,
+          "maximum": 42.7
+        },
+        "themes": [
+          {
+            "scheme": "https://cfconventions.org/Data/cf-conventions/cf-conventions-1.13/cf-conventions.html",
+            "concepts": [
+              {
+                "id": "wind_speed",
+                "title": "Wind speed",
+                "url": "https://cfconventions.org/Data/cf-standard-names/95/build/cf-standard-name-table.html#wind_speed"
+              }
+            ]
+          }
+        ]
+      },
+      "geopotential_height": {
         "type": "auxiliary",
-        "values": [
-          "red",
-          "green",
-          "blue"
+        "dimensions": [
+          "member",
+          "time",
+          "pressure",
+          "y",
+          "x"
+        ],
+        "description": "Geopotential height of the pressure levels",
+        "cf:standard_name": "geopotential_height",
+        "unit": "m",
+        "data_type": "float32",
+        "statistics": {
+          "minimum": 92.3,
+          "maximum": 10871.5
+        },
+        "themes": [
+          {
+            "scheme": "https://cfconventions.org/Data/cf-conventions/cf-conventions-1.13/cf-conventions.html",
+            "concepts": [
+              {
+                "id": "geopotential_height",
+                "title": "Geopotential height",
+                "url": "https://cfconventions.org/Data/cf-standard-names/95/build/cf-standard-name-table.html#geopotential_height"
+              }
+            ]
+          }
         ]
       }
     }
   },
   "assets": {
     "data": {
-      "href": "http://cool-sat.com/catalog/datacube-123/data.nc",
+      "href": "https://example.com/weather-forecast-2016-05-03/forecast.nc",
       "type": "application/netcdf",
-      "title": "netCDF Data cube"
-    },
-    "thumbnail": {
-      "href": "http://cool-sat.com/catalog/datacube-123/thumbnail.png",
-      "type": "image/png",
-      "title": "Thumbnail"
+      "title": "NetCDF weather forecast",
+      "roles": [
+        "data"
+      ]
     }
   },
   "links": [
     {
       "rel": "self",
-      "href": "http://cool-sat.com/catalog/datacube-123/item.json"
+      "href": "https://example.com/weather-forecast-2016-05-03/item.json"
     }
   ]
 }

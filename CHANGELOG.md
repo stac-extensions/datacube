@@ -19,6 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Clarified that coordinate variables of dimensions should not be listed in `cube:variables` [#33](https://github.com/stac-extensions/datacube/issues/33)
 - Recommend `extent` instead of `values` for dimensions with a large number of dimension labels
 - Clarified that `extent` and `values` of Variable Objects exclude the `nodata` value
+- Variable Objects refer to common metadata and extensions for additional fields (e.g. `statistics`, `cf:standard_name` or `themes`)
+  instead of redefining them [#26](https://github.com/stac-extensions/datacube/issues/26), [#35](https://github.com/stac-extensions/datacube/issues/35)
+
+### Deprecated
+
+- `extent` and `values` in Variable Objects in favor of `statistics` and the [classification extension](https://github.com/stac-extensions/classification/) [#35](https://github.com/stac-extensions/datacube/issues/35)
 
 ### Fixed
 
