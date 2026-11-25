@@ -53,6 +53,15 @@ The following fields can be used in the following parts of a STAC document:
 
 The keys of `cube:dimensions` and `cube:variables` should be unique together; a key like `lat` should not be both a dimension and a variable.
 
+> [!NOTE]
+> If `cube:variables` is not provided, the datacube consists of a single variable that spans all dimensions in `cube:dimensions`
+> (comparable to an xarray DataArray, while `cube:variables` corresponds to an xarray Dataset).
+> The fields that would otherwise be provided in the Variable Object (e.g. `description`, `unit`, `nodata`, `data_type` and `statistics`)
+> can be provided directly in the corresponding STAC entity, e.g. the asset.
+> If the datacube has a dimension of type `bands`, these fields can be provided per band in
+> [`bands`](https://github.com/radiantearth/stac-spec/blob/v1.1.0/commons/common-metadata.md#bands),
+> where the `name` of each band corresponds to a dimension label.
+
 ### Dimension Object
 
 A *Dimension Object* comes in different flavors, each of them is defined below. The fields define mostly very similar fields,
@@ -206,6 +215,37 @@ are described by the corresponding Dimension Object and SHOULD NOT be listed in 
 
 See the [CF Conventions](http://cfconventions.org/Data/cf-conventions/cf-conventions-1.8/cf-conventions.html#terminology)
 for more on auxiliary coordinates.
+
+## Virtual datacubes
+
+Virtual datacubes reference existing data files without copying the data.
+They can be described with this extension like any other datacube:
+The fields describe the datacube that is exposed by the virtual datacube, not the referenced data files.
+
+It is RECOMMENDED to:
+
+- add the fields to the asset of the virtual datacube (e.g. the reference file or store),
+- add the roles `data` and `virtual` to this asset, and
+- provide the referenced data files as separate assets with the roles `data` and `source`, if useful.
+
+This is aligned with the [STAC Zarr best practices][zarr-bp], which also explain how to link to virtual Zarr stores.
+
+| Virtual datacube                   | Media type                                     | Notes |
+| ---------------------------------- | ---------------------------------------------- | ----- |
+| [Kerchunk][kerchunk]               | [`application/vnd.zarr+kerchunk`][zarr-bp]     | Virtual Zarr store, references as JSON or Parquet, e.g. created with [VirtualiZarr][virtualizarr] |
+| [Icechunk][icechunk]               | [`application/vnd.zarr+icechunk`][zarr-bp]     | Virtual Zarr store, e.g. created with [VirtualiZarr][virtualizarr]; the same media type applies to repositories with native chunks |
+| [GDAL VRT][vrt]                    | [`application/vnd.gdalvrt+xml`][vrt-mediatype] | Raster with the dimensions `x`, `y` and `bands` |
+| [Virtual Assets][virtual-assets]   | -                                              | STAC extension, virtual asset composed of other assets in STAC |
+
+Please note that the media types are not registered with IANA.
+
+[zarr-bp]: https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-zarr.md#representing-virtual-zarr-stores
+[kerchunk]: https://fsspec.github.io/kerchunk/
+[icechunk]: https://icechunk.io/
+[virtualizarr]: https://virtualizarr.readthedocs.io/
+[vrt]: https://gdal.org/en/stable/drivers/raster/vrt.html
+[vrt-mediatype]: https://lists.osgeo.org/pipermail/gdal-dev/2021-April/053924.html
+[virtual-assets]: https://github.com/stac-extensions/virtual-assets
 
 ## Mapping to other terminologies
 
