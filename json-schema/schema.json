@@ -280,6 +280,9 @@
         "step": {
           "$ref": "#/definitions/step"
         },
+        "sampling": {
+          "$ref": "#/definitions/sampling"
+        },
         "unit": {
           "$ref": "#/definitions/unit"
         },
@@ -325,6 +328,9 @@
         },
         "step": {
           "$ref": "#/definitions/step"
+        },
+        "sampling": {
+          "$ref": "#/definitions/sampling"
         },
         "unit": {
           "$ref": "#/definitions/unit"
@@ -374,6 +380,9 @@
         },
         "step": {
           "$ref": "#/definitions/step"
+        },
+        "sampling": {
+          "$ref": "#/definitions/sampling"
         },
         "unit": {
           "$ref": "#/definitions/unit"
@@ -505,6 +514,9 @@
             "string",
             "null"
           ]
+        },
+        "sampling": {
+          "$ref": "#/definitions/sampling"
         },
         "unit": {
           "$ref": "#/definitions/unit"
@@ -687,6 +699,13 @@
     "count": {
       "type": "integer",
       "minimum": 0
+    },
+    "sampling": {
+      "type": "string",
+      "enum": [
+        "area",
+        "point"
+      ]
     }
   }
 }

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added `count` field to Dimension Objects. [#31](https://github.com/stac-extensions/datacube/issues/31)
 - Added `unit` field to more dimensions
+- Added `sampling` field to Dimension Objects to define whether `extent` gives cell bounds or the first and last dimension label
 
 ### Changed
 

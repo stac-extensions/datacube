@@ -69,6 +69,7 @@
         ],
         "step": 100,
         "count": 11,
+        "sampling": "point",
         "unit": "Pa"
       },
       "metered_levels": {

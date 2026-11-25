@@ -62,11 +62,27 @@ certain values, too. `extent`, `values` and `step` share the same definition, bu
 depending on the type of dimension. Whenever it's useful to specify these fields, the objects add the additional fields `reference_system`
 and `unit` with very similar definitions across the objects.
 
-The optional `count` field specifies the total number of dimension labels along the dimension.
+The optional `count` field specifies the exact total number of dimension labels along the dimension.
 When `values` and `count` are provided, `count` MUST equal the length of `values`.
-`count` is especially useful if `values` is not provided, e.g. for large or irregularly spaced dimensions.
-It can't always be derived reliably from `extent` and `step` as it depends on whether the dimension labels represent points or intervals
-(e.g. an extent of `[0, 10]` with a step of `1` can have 10 or 11 dimension labels).
+It is especially useful to indicate `count` when `values` cannot be provided, e.g. for large or irregularly spaced dimensions.
+
+The optional `sampling` field specifies whether the dimension labels represent cells or points,
+which defines how `extent` relates to the dimension labels:
+
+- `area`: Each dimension label represents a cell, e.g. a pixel or a time interval such as a monthly composite.
+  `extent` gives the outer bounds of the first and last cell, consistent with `bbox`, `proj:bbox` and `start_datetime`/`end_datetime`.
+  For spatial dimensions, `values` SHOULD be the cell centers.
+- `point`: Each dimension label represents a point, e.g. a pixel-is-point sample or an instant in time.
+  `extent` gives the first and last dimension label.
+
+If `sampling` is not provided, it is undefined whether `extent` gives the outer cell bounds or the first and last dimension label.
+`sampling` is defined per dimension, as opposed to `raster:sampling`, which describes the data values of a raster.
+
+For example, `"extent": [0, 10]` with `"step": 1` has 10 dimension labels (0.5, 1.5, ..., 9.5) with `"sampling": "area"`,
+and 11 dimension labels (0, 1, ..., 10) with `"sampling": "point"`.
+With `sampling` and a regular `step`, `count` can be derived from `extent` and `step`:
+It is the number of steps between the bounds of `extent` for `area`, and that number plus one for `point`.
+Otherwise, `count` can't be derived reliably and SHOULD be provided, e.g. if `sampling` is not provided or `step` is `null`.
 
 `values` is meant for dimensions with a small number of dimension labels, e.g. bands.
 For large dimensions, it is RECOMMENDED to provide `extent` (and `step` and `count` if applicable) instead of listing all dimension labels.
@@ -84,6 +100,7 @@ A spatial raster dimension in one of the horizontal (x or y) directions.
 | values           | \[number]      | Optionally, an ordered list of all dimension labels.         |
 | count            | integer        | Total number of dimension labels along the dimension (`>= 0`). |
 | step             | number\|null   | The space between consecutive dimension labels. Use `null` for irregularly spaced dimension labels. |
+| sampling         | string         | Whether the dimension labels represent cells (`area`) or points (`point`), see [Dimension Object](#dimension-object). |
 | unit             | string         | The unit of measurement for the dimension labels, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 | reference_system | string\|number\|object | The spatial reference system for the data and the dimension labels (`extent`, `values` and `step`), specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
@@ -100,6 +117,7 @@ A spatial dimension in vertical (z) direction.
 | values           | \[number\|string\] | An ordered list of all dimension labels, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) dimension labels. |
 | count            | integer          | Total number of dimension labels along the dimension (`>= 0`). |
 | step             | number\|null     | If the dimension labels are [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between consecutive dimension labels. Use `null` for irregularly spaced dimension labels. |
+| sampling         | string           | Whether the dimension labels represent cells (`area`) or points (`point`), see [Dimension Object](#dimension-object). |
 | unit             | string           | The unit of measurement for the dimension labels, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 | reference_system | string\|number\|object | The spatial reference system for the data and the dimension labels (`extent`, `values` and `step`), specified as [numerical EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html) or [PROJJSON object](https://proj.org/specifications/projjson.html). Defaults to EPSG code 4326. |
 
@@ -118,6 +136,7 @@ A temporal dimension based on the ISO 8601 standard. The temporal reference syst
 | values     | \[string]       | An ordered list of all dimension labels. The dates and/or times must be strings compliant to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). |
 | count      | integer         | Total number of dimension labels along the dimension (`>= 0`). |
 | step       | string\|null    | The space between consecutive dimension labels as [ISO 8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations), e.g. `P1D`. Use `null` for irregularly spaced dimension labels. |
+| sampling   | string          | Whether the dimension labels represent cells (`area`) or points (`point`), see [Dimension Object](#dimension-object). |
 | unit       | string          | The unit of measurement for the dimension labels, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 
 ### Spatial Vector Dimension Object
@@ -149,6 +168,7 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 | values           | \[number\|string] | An ordered list of all dimension labels, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) dimension labels. |
 | count            | integer           | Total number of dimension labels along the dimension (`>= 0`). |
 | step             | number\|null      | If the dimension labels are [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between consecutive dimension labels. Use `null` for irregularly spaced dimension labels. |
+| sampling         | string            | Whether the dimension labels represent cells (`area`) or points (`point`), see [Dimension Object](#dimension-object). |
 | unit             | string            | The unit of measurement for the dimension labels, preferably compliant to [UCUM](https://ucum.org) (unit code) or [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) (unit symbol or alternatively singular unit name). |
 | reference_system | string            | The reference system for the data and the dimension labels (`extent`, `values` and `step`). |
 
