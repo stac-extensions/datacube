@@ -13,6 +13,10 @@ It specifies datacube related metadata, especially their dimensions and potentia
 - Examples:
   - [Item example](examples/item.json): Shows the basic usage of the extension in a STAC Item
   - [Collection example](examples/collection.json): Shows the basic usage of the extension in a STAC Collection
+  - [Item asset example](examples/item_asset.json): Shows usage of the extension in Item Assets
+  - [Vector example](examples/vector.json): Shows a vector dimension with geometry metadata
+  - [Daymet HI annual example](examples/daymet-hi-annual.json): Shows a real-world Collection with datacube metadata
+  - [DGGS item example](examples/dggs.json): Shows usage of a DGGS-based spatial dimension in a STAC Item
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
@@ -123,6 +127,41 @@ A spatial dimension in vertical (z) direction.
 
 A Vertical Spatial Dimension Object MUST specify an `extent` or `values`. It MAY specify both.
 
+### Spatial DGGS Dimension Object
+
+A spatial dimension based on a Discrete Global Grid System (DGGS).
+
+| Field Name       | Type           | Description                                                  |
+| ---------------- | -------------- | ------------------------------------------------------------ |
+| type             | string         | **REQUIRED.** Type of the dimension, always `dggs`. |
+| description      | string         | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| extent           | \[number\]     | The spatial extent of the DGGS zones as a GeoJSON-style bbox: `[west, south, east, north]` or `[west, south, minz, east, north, maxz]`. |
+| values           | \[string\]     | An ordered list of dimension labels, i.e. DGGS zone identifiers. Useful when enumerating a known set of zones (for example, a tile index or explicit zone subset). |
+| count            | integer        | Total number of dimension labels (i.e. zones) along the dimension (`>= 0`). |
+| reference_system | string         | **REQUIRED.** Identifier of the DGGS reference system (DGGRS), preferably a URI. |
+
+It is RECOMMENDED that a Spatial DGGS Dimension Object specifies at least one of `extent` or `values`
+unless it would be equivalent to the bbox/extent in the containing Item/Collection.
+
+Instead of listing a large number of zones in `values`, the parent zone and its level can be provided through the DGGS Extension
+(`dggs:zone_id` and `dggs:zone_level`) together with `dggs:refinement_level` so that clients can compute the zones,
+similar to the zone query in OGC API - DGGS.
+
+For DGGS dimensions, `reference_system` identifies the DGGS reference system (DGGRS), not a coordinate reference system (CRS).
+Identifiers such as `https://www.opengis.net/def/dggrs/OGC/1.0/HEALPix` from the
+[OGC DGGRS Register](https://defs.opengis.net/prez/catalogs/ogc-cat:register/col/def:dggrs) are valid examples.
+Additional DGGS metadata, e.g. the refinement level (`dggs:refinement_level`) or the indexing scheme of the zone identifiers,
+can be provided through the [DGGS Extension](https://github.com/stac-extensions/dggs).
+
+Guidance for vertical information with DGGS:
+
+- Most DGGS implementations used in practice are surface-based (2D).
+- For elevation, depth, pressure level, or altitude, prefer a separate
+  [Vertical Spatial Dimension Object](#vertical-spatial-dimension-object) with `axis` set to `z`.
+- Use DGGS-only encoding of `z` only if the selected DGGRS natively defines volumetric zones and the zone identifiers represent those volumes.
+- In most interoperable STAC/datacube use cases, model horizontal partitioning as `dggs`
+  and vertical structure as a separate `z` dimension.
+
 ### Temporal Dimension Object
 
 A temporal dimension based on the ISO 8601 standard. The temporal reference system for the data is expected to be ISO 8601 compliant
@@ -162,7 +201,7 @@ An additional dimension that is not `spatial`, but may be `temporal` if the data
 
 | Field Name       | Type              | Description                                                  |
 | ---------------- | ----------------- | ------------------------------------------------------------ |
-| type             | string            | **REQUIRED.** Custom type of the dimension, never `spatial` or `geometry`. |
+| type             | string            | **REQUIRED.** Custom type of the dimension, never `spatial`, `geometry` or `dggs`. |
 | description      | string            | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | extent           | \[number\|null]   | If the dimension labels are [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale), the extent (lower and upper bounds) of the dimension labels as two-element array. Use `null` for open intervals. |
 | values           | \[number\|string] | An ordered list of all dimension labels, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) dimension labels. |
