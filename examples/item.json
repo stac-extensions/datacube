@@ -1,7 +1,8 @@
 {
   "stac_version": "1.1.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/datacube/v2.3.0/schema.json"
+    "https://stac-extensions.github.io/datacube/v2.3.0/schema.json",
+    "https://stac-extensions.github.io/cf/v1.0.0/schema.json"
   ],
   "id": "weather-forecast-2016-05-03",
   "type": "Feature",
@@ -111,13 +112,26 @@
           "x"
         ],
         "description": "Air temperature",
+        "cf:standard_name": "air_temperature",
         "unit": "K",
         "data_type": "float32",
         "nodata": "nan",
         "statistics": {
           "minimum": 218.4,
           "maximum": 296.1
-        }
+        },
+        "themes": [
+          {
+            "scheme": "https://cfconventions.org/Data/cf-conventions/cf-conventions-1.13/cf-conventions.html",
+            "concepts": [
+              {
+                "id": "air_temperature",
+                "title": "Air temperature",
+                "url": "https://cfconventions.org/Data/cf-standard-names/95/build/cf-standard-name-table.html#air_temperature"
+              }
+            ]
+          }
+        ]
       },
       "wind_speed": {
         "type": "data",
@@ -129,13 +143,26 @@
           "x"
         ],
         "description": "Wind speed",
-        "unit": "m/s",
+        "cf:standard_name": "wind_speed",
+        "unit": "m s-1",
         "data_type": "float32",
         "nodata": "nan",
         "statistics": {
           "minimum": 0,
           "maximum": 42.7
-        }
+        },
+        "themes": [
+          {
+            "scheme": "https://cfconventions.org/Data/cf-conventions/cf-conventions-1.13/cf-conventions.html",
+            "concepts": [
+              {
+                "id": "wind_speed",
+                "title": "Wind speed",
+                "url": "https://cfconventions.org/Data/cf-standard-names/95/build/cf-standard-name-table.html#wind_speed"
+              }
+            ]
+          }
+        ]
       },
       "geopotential_height": {
         "type": "auxiliary",
@@ -147,12 +174,25 @@
           "x"
         ],
         "description": "Geopotential height of the pressure levels",
+        "cf:standard_name": "geopotential_height",
         "unit": "m",
         "data_type": "float32",
         "statistics": {
           "minimum": 92.3,
           "maximum": 10871.5
-        }
+        },
+        "themes": [
+          {
+            "scheme": "https://cfconventions.org/Data/cf-conventions/cf-conventions-1.13/cf-conventions.html",
+            "concepts": [
+              {
+                "id": "geopotential_height",
+                "title": "Geopotential height",
+                "url": "https://cfconventions.org/Data/cf-standard-names/95/build/cf-standard-name-table.html#geopotential_height"
+              }
+            ]
+          }
+        ]
       }
     }
   },
