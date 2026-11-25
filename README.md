@@ -233,7 +233,7 @@ This is aligned with the [STAC Zarr best practices][zarr-bp], which also explain
 | Virtual datacube                   | Media type                                     | Notes |
 | ---------------------------------- | ---------------------------------------------- | ----- |
 | [Kerchunk][kerchunk]               | [`application/vnd.zarr+kerchunk`][zarr-bp]     | Virtual Zarr store, references as JSON or Parquet, e.g. created with [VirtualiZarr][virtualizarr] |
-| [Icechunk][icechunk]               | [`application/vnd.zarr+icechunk`][zarr-bp]     | Virtual Zarr store, e.g. created with [VirtualiZarr][virtualizarr] |
+| [Icechunk][icechunk]               | [`application/vnd.zarr+icechunk`][zarr-bp]     | Virtual Zarr store, e.g. created with [VirtualiZarr][virtualizarr]; the same media type applies to repositories with native chunks |
 | [GDAL VRT][vrt]                    | [`application/vnd.gdalvrt+xml`][vrt-mediatype] | Raster with the dimensions `x`, `y` and `bands` |
 | [Virtual Assets][virtual-assets]   | -                                              | STAC extension, virtual asset composed of other assets in STAC |
 
